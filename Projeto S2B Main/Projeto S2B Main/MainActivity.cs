@@ -24,6 +24,7 @@ namespace Projeto_S2B_Main {
 			Button button = FindViewById<Button>(Resource.Id.MyButton);
 
 			//Comentário de teste.
+			//Comentario 2
 
 			button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
 		}
