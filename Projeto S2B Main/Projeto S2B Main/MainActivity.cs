@@ -7,9 +7,8 @@ using Android.Widget;
 using Android.OS;
 
 namespace Projeto_S2B_Main {
-	[Activity(Label = "Projeto_S2B_Main", MainLauncher = true, Icon = "@drawable/icon")]
-	public class MainActivity : Activity {
-		int count = 1;
+	[Activity(Label = "Projeto Financeiro", MainLauncher = true, Icon = "@drawable/icon")]
+	public class MainActivity : Activity {		
 
 		protected override void OnCreate (Bundle bundle) {
 			base.OnCreate(bundle);
@@ -17,17 +16,38 @@ namespace Projeto_S2B_Main {
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Main);
 
+            //Comandos para tratar o click dos botões
 
+            FindViewById(Resource.Id.contas).Click += Contas;
 
-			// Get our button from the layout resource,
-			// and attach an event to it
-			Button button = FindViewById<Button>(Resource.Id.MyButton);
+            FindViewById(Resource.Id.categorias).Click += Categorias;
 
-			//Comentário de teste.
-			//Comentario 2
+            FindViewById(Resource.Id.lancamentos).Click += Lancamentos;
 
-			button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
-		}
+            FindViewById(Resource.Id.transferencia).Click += Transferencias;
+        }
+
+        //Funções para iniciar as novas activities depois do click
+
+        void Contas(object sender, EventArgs e)
+        {
+            StartActivity(typeof(telacontas));
+        }
+
+        void Categorias(object sender, EventArgs e)
+        {
+            StartActivity(typeof(telacategorias));
+        }
+
+        void Lancamentos(object sender, EventArgs e)
+        {
+            StartActivity(typeof(telalancamentos));
+        }
+
+        void Transferencias(object sender, EventArgs e)
+        {
+            StartActivity(typeof(telatransferencias));
+        }
 	}
 }
 

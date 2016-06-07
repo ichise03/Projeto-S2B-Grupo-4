@@ -3,11 +3,34 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-<Button  
-    android:id="@+id/MyButton"
-    android:layout_width="fill_parent" 
-    android:layout_height="wrap_content" 
-    android:text="@string/Hello"
-    />
+    android:minWidth="25dp"
+    android:minHeight="25dp">
+    <Button
+        android:text="Contas"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:id="@+id/contas"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp" />
+    <Button
+        android:text="Categorias"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:id="@+id/categorias"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="-100dp" />
+    <Button
+        android:text="Lançamentos"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:id="@+id/lancamentos"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp" />
+    <Button
+        android:text="Transferências"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:id="@+id/transferencia"
+        android:layout_marginTop="-100dp"
+        android:layout_marginLeft="200dp" />
 </LinearLayout>
