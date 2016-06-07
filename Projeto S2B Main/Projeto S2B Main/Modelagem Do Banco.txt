@@ -1,0 +1,54 @@
+﻿//Cadastro e gerenciamento de contas:
+CREATE TABLE Contas (
+	id int PRIMARY KEY AUTO_INCREMENT,
+	saldo decimal(10,2) NOT NULL DEFAULT 0,
+	tipo ENUM ( 'Moeda em Espécie', 'Cartão de Crédito', 'Cartão de Débito', 'Poupança' ) NOT NULL,
+	nome VARCHAR(200) UNIQUE NOT NULL
+);
+
+//Cadastro de categorias:
+CREATE TABLE Categorias (
+	id int PRIMARY KEY AUTO_INCREMENT,
+	grupo VARCHAR(50) NOT NULL,
+	nome VARCHAR(100) NOT NULL
+);
+
+//Cadastro de atributos:
+CREATE TABLE Atributos (
+	id int PRIMARY KEY AUTO_INCREMENT,
+	id_categoria int NOT NULL,
+	nome VARCHAR(60) NOT NULL,
+	tipo ENUM ( 'Texto', 'Numero', 'Booleano' ) NOT NULL,
+	FOREIGN KEY (id_categoria) REFERENCES Categorias(id)
+);
+
+//Registro de fornecedores:
+CREATE TABLE Fornecedores (
+	id int PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR (150) NOT NULL
+);
+
+//Registro de lançamentos:
+CREATE TABLE Lancamentos (
+	id int PRIMARY KEY AUTO_INCREMENT,
+	id_conta int NOT NULL,
+	id_fornecedor int NOT NULL,
+	id_categoria int NOT NULL,
+	valor decimal(10,2) NOT NULL,
+	tipo ENUM ( 'Creditar', 'Debitar' ) NOT NULL,
+	comentario VARCHAR(500) NULL,
+	data_hora DATETIME NOT NULL,
+	FOREIGN KEY (id_conta) REFERENCES Contas(id),
+	FOREIGN KEY (id_fornecedor) REFERENCES Fornecedores(id),
+	FOREIGN KEY (id_categoria) REFERENCES Categorias(id)
+);
+
+//Valores dos atributos dos lançamentos (Relacionamento):
+CREATE TABLE Lancamento_Atributo (
+	id int PRIMARY KEY AUTO_INCREMENT,
+	id_lancamento int NOT NULL,
+	id_atributo int NOT NULL,
+	valor VARCHAR(100) NULL,
+	FOREIGN KEY (id_lancamento) REFERENCES Lancamentos(id),
+	FOREIGN KEY (id_atributo) REFERENCES Atributos(id)
+);
