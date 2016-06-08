@@ -209,10 +209,22 @@ namespace Projeto_S2B_Main
 			else return new Contas();
 
 		}
+	
 		public System.Collections.Generic.List<Contas> acessarContas () {
 			SQLiteConnection bd = SGBD.Connect();
 			return bd.Query<Contas>(string.Format("Select * from Contas"));
 		}
+		public System.Collections.Generic.List<String> acessarNomeContas () 
+		{
+			SQLiteConnection bd = SGBD.Connect();
+			System.Collections.Generic.List<Contas> contas = bd.Query<Contas>(string.Format("Select * from Contas"));
+			System.Collections.Generic.List<String> nomes = new System.Collections.Generic.List<string>();
+			foreach (Contas i in contas)
+				nomes.Add(i.Nome);
+			return nomes;
+
+		}
+
 		public void updateConta (Contas conta) {
 			SQLiteConnection bd = SGBD.Connect();
 			bd.Update(conta);
