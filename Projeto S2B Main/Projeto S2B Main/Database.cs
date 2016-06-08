@@ -302,5 +302,32 @@ namespace Projeto_S2B_Main
 			bd.Delete(categoria);
 		}
 
-	}
+        //Atributo
+        public int adicionarAtributo (int idCategoria, String nome, Atributos.TipoAtributo tipo) {
+            SQLiteConnection bd = SGBD.Connect();
+            Atributos atributo = new Atributos(idCategoria, nome, tipo);
+            return bd.Insert(atributo);
+        }
+        public Atributos acessarAtributo (int id) {
+            SQLiteConnection bd = SGBD.Connect();
+            System.Collections.Generic.List<Atributos> atributo = bd.Query<Atributos>(string.Format("Select * from Atributo where ID = {0};", id));
+            if (atributo.Count > 0)
+                return atributo[0];
+            else return new Atributos();
+
+        }
+        public System.Collections.Generic.List<Atributos> acessarAtributo () {
+            SQLiteConnection bd = SGBD.Connect();
+            return bd.Query<Atributos>(string.Format("Select * from Atributo"));
+        }
+        public void updateAtributo (Atributos atributo) {
+            SQLiteConnection bd = SGBD.Connect();
+            bd.Update(atributo);
+        }
+        public void deleteAtributo (Atributos atributo) {
+            SQLiteConnection bd = SGBD.Connect();
+            bd.Delete(atributo);
+        }
+
+    }
 }
