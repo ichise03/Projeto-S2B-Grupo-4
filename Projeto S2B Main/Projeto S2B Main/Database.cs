@@ -14,7 +14,8 @@ namespace Projeto_S2B_Main
     /// </summary>
     class Contas
     {
-        public enum TipoConta { Moeda_Em_Espécie, Cartão_De_Crédito, Cartão_De_Débito, Poupança }
+		public Contas () { ID = -1; }
+		public enum TipoConta { Moeda_Em_Espécie, Cartão_De_Crédito, Cartão_De_Débito, Poupança }
 
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -81,7 +82,8 @@ namespace Projeto_S2B_Main
     /// </summary>
     class Fornecedores
     {
-        [PrimaryKey, AutoIncrement]
+		public Fornecedores () { ID = -1; }
+		[PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
         [NotNull]
@@ -189,4 +191,62 @@ namespace Projeto_S2B_Main
             conn.Close();
         }
     }
+	class gerenciadorBanco {
+
+		public int adicionarConta (String nome, decimal saldo, Contas.TipoConta tipo) {
+			SQLiteConnection bd = SGBD.Connect();
+			Contas conta = new Contas();
+			conta.Nome = nome;
+			conta.Saldo = saldo;
+			conta.Tipo = tipo;
+			return bd.Insert(conta);
+		}
+		public Contas acessarConta (int id) {
+			SQLiteConnection bd = SGBD.Connect();
+			System.Collections.Generic.List<Contas> conta = bd.Query<Contas>(string.Format("Select * from Contas where ID = {0};", id));
+			if (conta.Count > 0)
+				return conta[0];
+			else return new Contas();
+
+		}
+		public System.Collections.Generic.List<Contas> acessarContas () {
+			SQLiteConnection bd = SGBD.Connect();
+			return bd.Query<Contas>(string.Format("Select * from Contas"));
+		}
+		public void updateConta (Contas conta) {
+			SQLiteConnection bd = SGBD.Connect();
+			bd.Update(conta);
+		}
+		public void deleteConta (Contas conta) {
+			SQLiteConnection bd = SGBD.Connect();
+			bd.Delete(conta);
+		}
+		public int adicionarFornecedor (String nome) {
+			SQLiteConnection bd = SGBD.Connect();
+			Fornecedores fornecedor = new Fornecedores();
+			fornecedor.Nome = nome;
+			return bd.Insert(fornecedor);
+		}
+		public Fornecedores acessarFornecedor (int id) {
+			SQLiteConnection bd = SGBD.Connect();
+			System.Collections.Generic.List<Fornecedores> fornecedor = bd.Query<Fornecedores>(string.Format("Select * from Fornecedores where ID = {0};", id));
+			if (fornecedor.Count > 0)
+				return fornecedor[0];
+			else return new Fornecedores();
+
+		}
+		public System.Collections.Generic.List<Contas> acessarFornecedores () {
+			SQLiteConnection bd = SGBD.Connect();
+			return bd.Query<Contas>(string.Format("Select * from Fornecedores"));
+		}
+		public void updateFornecedor (Fornecedores fornecedor) {
+			SQLiteConnection bd = SGBD.Connect();
+			bd.Update(fornecedor);
+		}
+		public void deleteFornecedor (Fornecedores fornecedor) {
+			SQLiteConnection bd = SGBD.Connect();
+			bd.Delete(fornecedor);
+		}
+
+	}
 }
