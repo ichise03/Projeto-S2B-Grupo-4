@@ -12,12 +12,12 @@ using Android.Widget;
 
 namespace Projeto_S2B_Main
 {
-    class GerenciamentoLista : BaseAdapter<String>
+    class GerenciamentoLista : BaseAdapter<string>
     {
-        List<String> DADOS;
+        List<string> DADOS;
         Activity C;
 
-        public GerenciamentoLista(List<String> dados, Activity c)
+        public GerenciamentoLista(List<string> dados, Activity c)
         {
             DADOS = dados;
             C = c;

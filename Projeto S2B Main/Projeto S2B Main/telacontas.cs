@@ -25,10 +25,8 @@ namespace Projeto_S2B_Main
             SetContentView(Resource.Layout.telacontas);
 
             //Aqui serão adicionados os dados do DB
-            DADOS.Add("Item 1");
-            DADOS.Add("Item 2");
-            DADOS.Add("Item 3");
-            DADOS.Add("Item 4");
+
+            DADOS.Add("Teste");
 
             //Criando a listview e passando os parâmetros
             ListView List = FindViewById<ListView>(Resource.Id.listView1);

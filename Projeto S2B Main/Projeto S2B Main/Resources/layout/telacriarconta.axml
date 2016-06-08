@@ -60,4 +60,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/editText2" />
+    <Button
+        android:text="Criar nova conta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button1" />
 </LinearLayout>
