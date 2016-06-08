@@ -15,6 +15,12 @@ namespace Projeto_S2B_Main
     class Contas
     {
 		public Contas () { ID = -1; }
+		public Contas( decimal saldo, TipoConta tipo, string nome) 
+		{
+			Nome = nome;
+			Saldo = saldo;
+			Tipo = tipo;
+		}
 		public enum TipoConta { Moeda_Em_Espécie, Cartão_De_Crédito, Cartão_De_Débito, Poupança }
 
         [PrimaryKey, AutoIncrement]
@@ -39,7 +45,14 @@ namespace Projeto_S2B_Main
     /// </summary>
     class Categorias
     {
-        [PrimaryKey, AutoIncrement]
+		public Categorias () { ID = -1; }
+		public Categorias (string nome, string grupo) 
+		{
+			Nome = nome;
+			Grupo = grupo;
+		}
+
+		[PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
         [NotNull]
@@ -59,7 +72,14 @@ namespace Projeto_S2B_Main
     /// </summary>
     class Atributos
     {
-        public enum TipoAtributo { Texto, Numero, Booleano }
+		public Atributos () { ID = -1; }
+		public Atributos (int idCategoria, string nome, TipoAtributo tipo) 
+		{
+			ID_Categoria = idCategoria;
+			Nome = nome;
+			Tipo = tipo;
+		}
+		public enum TipoAtributo { Texto, Numero, Booleano }
 
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -83,6 +103,7 @@ namespace Projeto_S2B_Main
     class Fornecedores
     {
 		public Fornecedores () { ID = -1; }
+		public Fornecedores (string nome) { Nome = nome; }
 		[PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
@@ -195,10 +216,7 @@ namespace Projeto_S2B_Main
 
 		public int adicionarConta (String nome, decimal saldo, Contas.TipoConta tipo) {
 			SQLiteConnection bd = SGBD.Connect();
-			Contas conta = new Contas();
-			conta.Nome = nome;
-			conta.Saldo = saldo;
-			conta.Tipo = tipo;
+			Contas conta = new Contas(saldo, tipo, nome);
 			return bd.Insert(conta);
 		}
 		public Contas acessarConta (int id) {
@@ -235,8 +253,7 @@ namespace Projeto_S2B_Main
 		}
 		public int adicionarFornecedor (String nome) {
 			SQLiteConnection bd = SGBD.Connect();
-			Fornecedores fornecedor = new Fornecedores();
-			fornecedor.Nome = nome;
+			Fornecedores fornecedor = new Fornecedores(nome);
 			return bd.Insert(fornecedor);
 		}
 		public Fornecedores acessarFornecedor (int id) {
@@ -247,9 +264,9 @@ namespace Projeto_S2B_Main
 			else return new Fornecedores();
 
 		}
-		public System.Collections.Generic.List<Contas> acessarFornecedores () {
+		public System.Collections.Generic.List<Fornecedores> acessarFornecedores () {
 			SQLiteConnection bd = SGBD.Connect();
-			return bd.Query<Contas>(string.Format("Select * from Fornecedores"));
+			return bd.Query<Fornecedores>(string.Format("Select * from Fornecedores"));
 		}
 		public void updateFornecedor (Fornecedores fornecedor) {
 			SQLiteConnection bd = SGBD.Connect();
@@ -258,6 +275,31 @@ namespace Projeto_S2B_Main
 		public void deleteFornecedor (Fornecedores fornecedor) {
 			SQLiteConnection bd = SGBD.Connect();
 			bd.Delete(fornecedor);
+		}
+		public int adicionarCategorias (String nome, String grupo) {
+			SQLiteConnection bd = SGBD.Connect();
+			Categorias categoria = new Categorias(nome, grupo);
+			return bd.Insert(categoria);
+		}
+		public Categorias acessarCategoria (int id) {
+			SQLiteConnection bd = SGBD.Connect();
+			System.Collections.Generic.List<Categorias> categoria = bd.Query<Categorias>(string.Format("Select * from Categorias where ID = {0};", id));
+			if (categoria.Count > 0)
+				return categoria[0];
+			else return new Categorias();
+
+		}
+		public System.Collections.Generic.List<Categorias> acessarCategorias () {
+			SQLiteConnection bd = SGBD.Connect();
+			return bd.Query<Categorias>(string.Format("Select * from Categorias"));
+		}
+		public void updateCategoria (Categorias categoria) {
+			SQLiteConnection bd = SGBD.Connect();
+			bd.Update(categoria);
+		}
+		public void deleteCategoria (Categorias categoria) {
+			SQLiteConnection bd = SGBD.Connect();
+			bd.Delete(categoria);
 		}
 
 	}
