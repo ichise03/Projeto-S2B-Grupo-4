@@ -15,7 +15,10 @@ namespace Projeto_S2B_Main {
 
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Main);
-
+            
+            //CREATE DATABASE IF NOT EXISTS
+            SGBD.CreateDatabase();
+           
             //Comandos para tratar o click dos botões
 
             FindViewById(Resource.Id.contas).Click += Contas;

@@ -1,54 +1,57 @@
-﻿//Cadastro e gerenciamento de contas:
+﻿/*Cadastro e gerenciamento de contas:*/
 CREATE TABLE Contas (
-	id int PRIMARY KEY AUTO_INCREMENT,
-	saldo decimal(10,2) NOT NULL DEFAULT 0,
-	tipo ENUM ( 'Moeda em Espécie', 'Cartão de Crédito', 'Cartão de Débito', 'Poupança' ) NOT NULL,
-	nome VARCHAR(200) UNIQUE NOT NULL
+	ID int PRIMARY KEY AUTO_INCREMENT,
+	Saldo decimal(10,2) NOT NULL,
+	Tipo ENUM ( 'Moeda_Em_Espécie', 'Cartão_De_Crédito', 'Cartão_De_Débito', 'Poupança' ) NOT NULL,
+	Nome VARCHAR(200) UNIQUE NOT NULL
 );
 
-//Cadastro de categorias:
+/*Cadastro de categorias:*/
 CREATE TABLE Categorias (
-	id int PRIMARY KEY AUTO_INCREMENT,
-	grupo VARCHAR(50) NOT NULL,
-	nome VARCHAR(100) NOT NULL
+	ID int PRIMARY KEY AUTO_INCREMENT,
+	Grupo VARCHAR(50) NOT NULL,
+	Nome VARCHAR(100) UNIQUE NOT NULL
 );
 
-//Cadastro de atributos:
+/*Categoria padrão:*/
+INSERT INTO Categorias (Grupo, Nome) VALUES ('Outros', 'Indeterminado');
+
+/*Cadastro de atributos:*/
 CREATE TABLE Atributos (
-	id int PRIMARY KEY AUTO_INCREMENT,
-	id_categoria int NOT NULL,
-	nome VARCHAR(60) NOT NULL,
-	tipo ENUM ( 'Texto', 'Numero', 'Booleano' ) NOT NULL,
-	FOREIGN KEY (id_categoria) REFERENCES Categorias(id)
+	ID int PRIMARY KEY AUTO_INCREMENT,
+	ID_Categoria int NOT NULL,
+	Nome VARCHAR(60) NOT NULL,
+	Tipo ENUM ( 'Texto', 'Numero', 'Booleano' ) NOT NULL,
+	FOREIGN KEY (ID_Categoria) REFERENCES Categorias(ID)
 );
 
-//Registro de fornecedores:
+/*Registro de fornecedores:*/
 CREATE TABLE Fornecedores (
-	id int PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR (150) NOT NULL
+	ID int PRIMARY KEY AUTO_INCREMENT,
+	Nome VARCHAR (150) NOT NULL
 );
 
-//Registro de lançamentos:
+/*Registro de lançamentos:*/
 CREATE TABLE Lancamentos (
-	id int PRIMARY KEY AUTO_INCREMENT,
-	id_conta int NOT NULL,
-	id_fornecedor int NOT NULL,
-	id_categoria int NOT NULL,
-	valor decimal(10,2) NOT NULL,
-	tipo ENUM ( 'Creditar', 'Debitar' ) NOT NULL,
-	comentario VARCHAR(500) NULL,
-	data_hora DATETIME NOT NULL,
-	FOREIGN KEY (id_conta) REFERENCES Contas(id),
-	FOREIGN KEY (id_fornecedor) REFERENCES Fornecedores(id),
-	FOREIGN KEY (id_categoria) REFERENCES Categorias(id)
+	ID int PRIMARY KEY AUTO_INCREMENT,
+	ID_Conta int NOT NULL,
+	ID_Fornecedor int NOT NULL,
+	ID_Categoria int NOT NULL,
+	Valor decimal(10,2) NOT NULL,
+	Tipo ENUM ( 'Creditar', 'Debitar' ) NOT NULL,
+	Comentario VARCHAR(500) NULL,
+	Data_Hora DATETIME NOT NULL,
+	FOREIGN KEY (ID_Conta) REFERENCES Contas(ID),
+	FOREIGN KEY (ID_Fornecedor) REFERENCES Fornecedores(ID),
+	FOREIGN KEY (ID_Categoria) REFERENCES Categorias(ID)
 );
 
-//Valores dos atributos dos lançamentos (Relacionamento):
+/*Valores dos atributos dos lançamentos (Relacionamento):*/
 CREATE TABLE Lancamento_Atributo (
-	id int PRIMARY KEY AUTO_INCREMENT,
-	id_lancamento int NOT NULL,
-	id_atributo int NOT NULL,
-	valor VARCHAR(100) NULL,
-	FOREIGN KEY (id_lancamento) REFERENCES Lancamentos(id),
-	FOREIGN KEY (id_atributo) REFERENCES Atributos(id)
+	ID int PRIMARY KEY AUTO_INCREMENT,
+	ID_Lancamento int NOT NULL,
+	ID_Atributo int NOT NULL,
+	Valor VARCHAR(100) NULL,
+	FOREIGN KEY (ID_Lancamento) REFERENCES Lancamentos(ID),
+	FOREIGN KEY (ID_Atributo) REFERENCES Atributos(ID)
 );
