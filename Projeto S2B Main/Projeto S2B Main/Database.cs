@@ -102,7 +102,7 @@ namespace Projeto_S2B_Main
     /// </summary>
     class Fornecedores
     {
-		public Fornecedores () { ID = -1; }
+        public Fornecedores () { ID = -1; }
 		public Fornecedores (string nome) { Nome = nome; }
 		[PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -123,9 +123,20 @@ namespace Projeto_S2B_Main
     ///		Comentario VARCHAR(500) NULL
     ///	);
     /// </summary>
-    class Lancamentos
+    class lancamento
     {
+        public lancamento () { ID = -1; }
         public enum TipoLancamento { Creditar, Debitar }
+        public lancamento (int idConta, int idFornecedor, int idCategoria, int valor, TipoLancamento tipo, DateTime dataHora, string comentario)
+        {
+            ID_Conta = idConta;
+            ID_Fornecedor = idFornecedor;
+            ID_Categoria = idCategoria;
+            Valor = valor;
+            Tipo = tipo;
+            Data_Hora = dataHora;
+            Comentario = comentario;
+        }
 
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
@@ -196,7 +207,7 @@ namespace Projeto_S2B_Main
             conn.CreateTable<Categorias>();
             conn.CreateTable<Atributos>();
             conn.CreateTable<Fornecedores>();
-            conn.CreateTable<Lancamentos>();
+            conn.CreateTable<lancamento>();
             conn.CreateTable<Lancamento_Atributo>();
 
             //Registra a categoria padrão se ela ainda não existir
@@ -213,8 +224,9 @@ namespace Projeto_S2B_Main
         }
     }
 	class gerenciadorBanco {
-
-		public int adicionarConta (String nome, decimal saldo, Contas.TipoConta tipo) {
+        
+        //Contas
+        public int adicionarConta (String nome, decimal saldo, Contas.TipoConta tipo) {
 			SQLiteConnection bd = SGBD.Connect();
 			Contas conta = new Contas(saldo, tipo, nome);
 			return bd.Insert(conta);
@@ -251,6 +263,8 @@ namespace Projeto_S2B_Main
 			SQLiteConnection bd = SGBD.Connect();
 			bd.Delete(conta);
 		}
+
+        //Fornecedor
 		public int adicionarFornecedor (String nome) {
 			SQLiteConnection bd = SGBD.Connect();
 			Fornecedores fornecedor = new Fornecedores(nome);
@@ -272,10 +286,12 @@ namespace Projeto_S2B_Main
 			SQLiteConnection bd = SGBD.Connect();
 			bd.Update(fornecedor);
 		}
-		public void deleteFornecedor (Fornecedores fornecedor) {
-			SQLiteConnection bd = SGBD.Connect();
-			bd.Delete(fornecedor);
-		}
+        public void deleteFornecedor (Fornecedores fornecedor) {
+            SQLiteConnection bd = SGBD.Connect();
+            bd.Delete(fornecedor);
+        }
+
+        //Categorias
 		public int adicionarCategorias (String nome, String grupo) {
 			SQLiteConnection bd = SGBD.Connect();
 			Categorias categoria = new Categorias(nome, grupo);
@@ -328,6 +344,42 @@ namespace Projeto_S2B_Main
             SQLiteConnection bd = SGBD.Connect();
             bd.Delete(atributo);
         }
+
+        //Lançamento
+        public int adicionarLancamento (int idConta, int idFornecedor, int idCategoria, int valor, lancamento.TipoLancamento Tipo, DateTime dataHora, string comentario){
+            SQLiteConnection bd = SGBD.Connect();
+            lancamento lancamento = new lancamento(idConta, idFornecedor, idCategoria, valor, Tipo, dataHora, comentario);
+            Contas conta = acessarConta(idConta);
+            if (conta.ID == -1)
+                return -1;
+            if (Tipo == lancamento.TipoLancamento.Creditar)
+                conta.Saldo += valor;
+            else
+                conta.Saldo -= valor;
+            updateConta(conta);
+            return bd.Insert(lancamento);
+        }
+        public lancamento acessarLancamento (int id) {
+            SQLiteConnection bd = SGBD.Connect();
+            System.Collections.Generic.List<lancamento> lancamento = bd.Query<lancamento>(string.Format("Select * from lancamento where ID = {0};", id));
+            if (lancamento.Count > 0)
+                return lancamento[0];
+            else return new lancamento();
+
+        }
+        public System.Collections.Generic.List<lancamento> acessarlancamento () {
+            SQLiteConnection bd = SGBD.Connect();
+            return bd.Query<lancamento>(string.Format("Select * from lancamento"));
+        }
+        public void updatelancamento (lancamento lancamento) {
+            SQLiteConnection bd = SGBD.Connect();
+            bd.Update(lancamento);
+        }
+        public void deletelancamneto (lancamento lancamento) {
+            SQLiteConnection bd = SGBD.Connect();
+            bd.Delete(lancamento);
+        }
+
 
     }
 }
