@@ -30,7 +30,7 @@ namespace Projeto_S2B_Main
 
         void CriarConta(object sender, EventArgs e)
         {
-            gerenciadorBanco gb = new gerenciadorBanco();
+            gerenciadorBanco gb = new gerenciadorBanco();            
 
             Contas.TipoConta tipo = new Contas.TipoConta();
 
@@ -51,7 +51,11 @@ namespace Projeto_S2B_Main
                 tipo = Contas.TipoConta.Poupança;
             }
             
-            gb.adicionarConta(FindViewById<EditText>(Resource.Id.editText1).Text, decimal.Parse(FindViewById<EditText>(Resource.Id.editText2).Text), tipo);            
+            gb.adicionarConta(FindViewById<EditText>(Resource.Id.editText1).Text, decimal.Parse(FindViewById<EditText>(Resource.Id.editText2).Text), tipo);
+
+            Toast.MakeText(this, "Conta criada com sucesso", ToastLength.Long).Show();          
+
+            Finish();                        
         }
 
         //Função que faz o botão de voltar da action bar funcionar

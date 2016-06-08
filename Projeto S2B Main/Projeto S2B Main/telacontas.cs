@@ -25,8 +25,9 @@ namespace Projeto_S2B_Main
             SetContentView(Resource.Layout.telacontas);
 
             //Aqui serão adicionados os dados do DB
+            gerenciadorBanco gb = new gerenciadorBanco();
 
-            DADOS.Add("Teste");
+            DADOS = (gb.acessarNomeContas());             
 
             //Criando a listview e passando os parâmetros
             ListView List = FindViewById<ListView>(Resource.Id.listView1);
@@ -46,16 +47,20 @@ namespace Projeto_S2B_Main
         //Função para iniciar a activity de nova conta
         void NovaConta(object sender, EventArgs e)
         {
-            StartActivity(typeof(telacriarconta));
+            StartActivity(typeof(telacriarconta));                     
+        }
+
+        protected override void OnRestart()
+        {
+            base.OnRestart();
+            StartActivity(typeof(telacontas));                  
         }
 
         //Função que define o que acontece quando clica no item da listview
         void List_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            Toast.MakeText(this, DADOS[e.Position], ToastLength.Short).Show();
+            ;
         }
-
-
 
         //Função que faz o botão de voltar da action bar funcionar
         public override bool OnOptionsItemSelected(IMenuItem item)

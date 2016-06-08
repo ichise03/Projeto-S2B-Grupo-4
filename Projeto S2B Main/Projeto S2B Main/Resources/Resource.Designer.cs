@@ -60,14 +60,14 @@ namespace Projeto_S2B_Main
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050006
-			public const int button1 = 2131034118;
+			// aapt resource value: 0x7f050007
+			public const int button1 = 2131034119;
+			
+			// aapt resource value: 0x7f050003
+			public const int categorias = 2131034115;
 			
 			// aapt resource value: 0x7f050002
-			public const int categorias = 2131034114;
-			
-			// aapt resource value: 0x7f050001
-			public const int contas = 2131034113;
+			public const int contas = 2131034114;
 			
 			// aapt resource value: 0x7f050008
 			public const int editText1 = 2131034120;
@@ -75,11 +75,11 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f050010
 			public const int editText2 = 2131034128;
 			
-			// aapt resource value: 0x7f050003
-			public const int lancamentos = 2131034115;
+			// aapt resource value: 0x7f050004
+			public const int lancamentos = 2131034116;
 			
-			// aapt resource value: 0x7f050005
-			public const int listView1 = 2131034117;
+			// aapt resource value: 0x7f050006
+			public const int listView1 = 2131034118;
 			
 			// aapt resource value: 0x7f05000b
 			public const int radioButton1 = 2131034123;
@@ -99,8 +99,8 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f050000
 			public const int textLabel = 2131034112;
 			
-			// aapt resource value: 0x7f050007
-			public const int textView1 = 2131034119;
+			// aapt resource value: 0x7f050001
+			public const int textView1 = 2131034113;
 			
 			// aapt resource value: 0x7f050009
 			public const int textView2 = 2131034121;
@@ -108,8 +108,8 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f05000f
 			public const int textView3 = 2131034127;
 			
-			// aapt resource value: 0x7f050004
-			public const int transferencia = 2131034116;
+			// aapt resource value: 0x7f050005
+			public const int transferencia = 2131034117;
 			
 			static Id()
 			{
@@ -128,22 +128,28 @@ namespace Projeto_S2B_Main
 			public const int celula = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int celulaexpansao = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int telacategorias = 2130903042;
+			public const int Main = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int telacontas = 2130903043;
+			public const int telacategorias = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int telacriarconta = 2130903044;
+			public const int telacontas = 2130903044;
 			
 			// aapt resource value: 0x7f030005
-			public const int telalancamentos = 2130903045;
+			public const int telacriarcategoria = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int telatransferencias = 2130903046;
+			public const int telacriarconta = 2130903046;
+			
+			// aapt resource value: 0x7f030007
+			public const int telalancamentos = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int telatransferencias = 2130903048;
 			
 			static Layout()
 			{
