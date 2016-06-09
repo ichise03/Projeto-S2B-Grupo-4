@@ -1,111 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:p1="http://schemas.android.com/apk/res/android"
-    p1:minWidth="25px"
-    p1:minHeight="25px"
-    p1:layout_width="match_parent"
-    p1:layout_height="match_parent"
-    p1:id="@+id/scrollView1">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollViewID"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent">
     <LinearLayout
-        p1:orientation="vertical"
-        p1:layout_width="match_parent"
-        p1:layout_height="match_parent"
-        p1:id="@+id/linearLayout1">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linearLayout1">
         <TextView
-            p1:text="Conta:"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/textView1" />
+            android:text="Conta:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1" />
         <TextView
-            p1:text="-----"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/txtConta" />
+            android:text="-----"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtConta" />
         <TextView
-            p1:text="Fornecedor:"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/textView1"
-            p1:layout_marginTop="16.0dp" />
+            android:text="Fornecedor:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_marginTop="16.0dp" />
         <TextView
-            p1:text="------"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/txtFornecedor" />
+            android:text="------"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtFornecedor" />
         <TextView
-            p1:text="Categoria:"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/textView1"
-            p1:layout_marginTop="16.0dp" />
+            android:text="Categoria:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_marginTop="16.0dp" />
         <TextView
-            p1:text="------"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/txtCategoria" />
+            android:text="------"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtCategoria" />
         <TextView
-            p1:text="Valor:"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/textView1"
-            p1:layout_marginTop="16.0dp" />
+            android:text="Valor:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_marginTop="16.0dp" />
         <TextView
-            p1:text="------"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/txtValor" />
+            android:text="------"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtValor" />
         <TextView
-            p1:text="Tipo:"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/textView1"
-            p1:layout_marginTop="16dp" />
+            android:text="Tipo:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_marginTop="16.0dp" />
         <TextView
-            p1:text="------"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/txtTipo" />
+            android:text="------"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtTipo" />
         <TextView
-            p1:text="Data e Hora:"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/textView1"
-            p1:layout_marginTop="16dp" />
+            android:text="Data e Hora:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_marginTop="16dp" />
         <TextView
-            p1:text="------"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/txtData" />
+            android:text="------"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtData" />
         <TextView
-            p1:text="Comentário:"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/textView1"
-            p1:layout_marginTop="16dp" />
+            android:text="Comentário:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_marginTop="16dp" />
         <TextView
-            p1:text="------"
-            p1:textAppearance="?android:attr/textAppearanceLarge"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/txtComentario"
-            p1:layout_marginBottom="0.0dp" />
+            android:text="------"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtComentario"
+            android:layout_marginBottom="0.0dp" />
         <ScrollView
-            p1:minWidth="25px"
-            p1:minHeight="25px"
-            p1:layout_width="match_parent"
-            p1:layout_height="wrap_content"
-            p1:id="@+id/scrollView1" />
+            android:minWidth="25px"
+            android:minHeight="25px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/scrollView1" />
     </LinearLayout>
 </ScrollView>
