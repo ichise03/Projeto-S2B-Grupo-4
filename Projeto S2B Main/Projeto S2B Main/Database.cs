@@ -193,6 +193,15 @@ namespace Projeto_S2B_Main {
 
         [NotNull]
         public string Valor { get; set; }
+
+        public Lancamento_Atributo () { ID = -1; }
+
+        public Lancamento_Atributo (int idLancamento, int idAtributo, string valor) 
+        {
+            ID_Lancamento = idLancamento;
+            ID_Atributo = idAtributo;
+            Valor = valor;
+        }
     }
 
 	/// <summary>
@@ -300,6 +309,11 @@ namespace Projeto_S2B_Main {
             conn.Delete(fornecedor);
         }
 
+        public static void deleteFornecedor (object fornecedor_ID) 
+        {
+            conn.Delete<Fornecedores>(fornecedor_ID);
+        }
+
         //Categorias
 		public static int adicionarCategorias (String nome, String grupo) {
 			Categorias categoria = new Categorias(nome, grupo);
@@ -327,6 +341,10 @@ namespace Projeto_S2B_Main {
 			conn.Delete(categoria);
 		}
 
+        public static void deleteCategoria (object categoria_ID) {
+            conn.Delete<Categorias>(categoria_ID);
+        }
+
         //Atributo
         public static int adicionarAtributo (int idCategoria, String nome, TipoAtributo tipo) {
             Atributos atributo = new Atributos(idCategoria, nome, tipo);
@@ -353,6 +371,10 @@ namespace Projeto_S2B_Main {
             conn.Delete(atributo);
         }
 
+        public static void deleteAtributos (object atributo_ID) {
+            conn.Delete<Atributos>(atributo_ID);
+        }
+
         //Lançamento
         public static int adicionarLancamento (int idConta, int idFornecedor, int idCategoria, int valor, TipoLancamento Tipo, DateTime dataHora, string comentario){
             Lancamentos lancamento = new Lancamentos(idConta, idFornecedor, idCategoria, valor, Tipo, dataHora, comentario);
@@ -375,16 +397,55 @@ namespace Projeto_S2B_Main {
 				return new Lancamentos();
         }
 
-        public static System.Collections.Generic.List<Lancamentos> acessarlancamento () {
+        public static System.Collections.Generic.List<Lancamentos> acessarLancamento () {
             return conn.Query<Lancamentos>(string.Format("Select * from Lancamentos"));
         }
 
-        public static void updatelancamento (Lancamentos lancamento) {
+        public static void updateLancamento (Lancamentos lancamento) {
             conn.Update(lancamento);
         }
 
-        public static void deletelancamneto (Lancamentos lancamento) {
+        public static void deleteLancamento (Lancamentos lancamento) {
             conn.Delete(lancamento);
+        }
+
+        public static void deleteLancamento (object lancamento_ID) {
+            conn.Delete<Lancamentos>(lancamento_ID);
+        }
+
+        //Lançamento_Atributo
+        public static int adicionarLancamentoAtributo (int idLancamento, int idAtributo, string valor) {
+            Lancamentos lancamento = acessarLancamento(idLancamento);
+            Atributos atributo = acessarAtributo(idAtributo);
+            if (lancamento.ID == -1 || atributo.ID == -1)
+                return -1;
+            Lancamento_Atributo lancamentoAtributo = new Lancamento_Atributo(idLancamento, idAtributo, valor);
+            return conn.Insert(lancamentoAtributo);
+        }
+
+        public static Lancamento_Atributo acessarLancamentoAtributo (int id) 
+        {
+            System.Collections.Generic.List<Lancamento_Atributo> lancamentoAtributo = conn.Query<Lancamento_Atributo>(string.Format("Select * from Lancamento_Atributo where ID = {0};", id));
+            if (lancamentoAtributo.Count > 0)
+                return lancamentoAtributo[0];
+            else
+                return new Lancamento_Atributo();
+        }
+
+        public static System.Collections.Generic.List<Lancamento_Atributo> acessarLancamentoAtributo () {
+            return conn.Query<Lancamento_Atributo>(string.Format("Select * from Lancamento_Atributo"));
+        }
+
+        public static void updateLancamentoaAtributo (Lancamento_Atributo lancamentoAtributo) {
+            conn.Update(lancamentoAtributo);
+        }
+
+        public static void deleteLancamentoAtributo (Lancamento_Atributo lancamentoAtributo) {
+            conn.Delete(lancamentoAtributo);
+        }
+
+        public static void deletelancamentoAtributo (object lancamentoAtributo_ID) {
+            conn.Delete<Lancamento_Atributo>(lancamentoAtributo_ID);
         }
     }
 }
