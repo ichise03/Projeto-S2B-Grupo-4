@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="gerenciamentolista.cs" />
+    <Compile Include="gerenciamentolistalancamentos.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -97,6 +98,12 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\detalhesDeLancamentos.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\detalhesDeTransferencia.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\celulalancamentos.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

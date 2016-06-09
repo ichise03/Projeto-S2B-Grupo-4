@@ -17,7 +17,7 @@
             android:id="@+id/textView1" />
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:id="@+id/spinner1" />
         <TextView
             android:text="Selecione o fornecedor"
@@ -27,7 +27,7 @@
             android:id="@+id/textView2" />
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:id="@+id/spinner2" />
         <TextView
             android:text="Selecione a categoria"
@@ -37,7 +37,7 @@
             android:id="@+id/textView3" />
         <Spinner
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="50dp"
             android:id="@+id/spinner3" />
         <TextView
             android:text="Digite o valor"

@@ -16,7 +16,7 @@ namespace Projeto_S2B_Main
 
     class telalancamentos : Activity
     {
-        List<string> DADOS = new List<string>();
+        List<Lancamentos> DADOS = new List<Lancamentos>();
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -24,25 +24,20 @@ namespace Projeto_S2B_Main
 
             SetContentView(Resource.Layout.telalancamentos);
 
-            //Aqui serão adicionados os dados do DB
-            DADOS.Add("Item 1");
-            DADOS.Add("Item 2");
-            DADOS.Add("Item 3");
-            DADOS.Add("Item 4");
+            LoadList();
 
-            //Criando a listview e passando os parâmetros
-            ListView List = FindViewById<ListView>(Resource.Id.lancamentosView);
-
-            GerenciamentoLista GL = new GerenciamentoLista(DADOS, this);
-
-            List.Adapter = GL;
-            List.ItemClick += List_ItemClick;
+            FindViewById<ListView>(Resource.Id.lancamentosView).ItemClick += List_ItemClick;           
 
             //Ativa o botão de voltar na action bar
             this.ActionBar.SetDisplayHomeAsUpEnabled(true);
 
             //Chamada para a nova tela do botão gerar lançamento
             FindViewById(Resource.Id.criarLancamento).Click += NovoLancamento;
+        }
+
+        public void LoadList()
+        {
+            //Implementar
         }
 
         //Função para startar a nova tela
@@ -54,7 +49,7 @@ namespace Projeto_S2B_Main
         //Função que define o que acontece quando clica no item da listview
         void List_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            Toast.MakeText(this, DADOS[e.Position], ToastLength.Short).Show();
+            //Implementar. Utilizar gerenciamentolistalancamentos
         }
 
         //Função que faz o botão de voltar da action bar funcionar

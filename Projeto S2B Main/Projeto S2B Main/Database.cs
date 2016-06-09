@@ -475,7 +475,7 @@ namespace Projeto_S2B_Main {
                 return new Lancamento_Atributo();
         }
 
-        public static System.Collections.Generic.List<Lancamento_Atributo> acessarLancamentoAtributo () {
+        public static System.Collections.Generic.List<Lancamento_Atributo> acessarLancamentoAtributos () {
             return conn.Query<Lancamento_Atributo>(string.Format("Select * from Lancamento_Atributo"));
         }
 
@@ -489,6 +489,86 @@ namespace Projeto_S2B_Main {
 
         public static void deletelancamentoAtributo (object lancamentoAtributo_ID) {
             conn.Delete<Lancamento_Atributo>(lancamentoAtributo_ID);
+        }
+
+        //Transferências
+        public static int adicionarTransferencia (int idContaOrigem, int idContaDestino, decimal valor, DateTime dataHora, string comentario) {
+            Contas contaOrigem = acessarConta(idContaOrigem);
+            Contas contaDestino = acessarConta(idContaDestino);
+            if (contaOrigem.ID == -1 || contaDestino.ID == -1 || contaOrigem.Saldo < valor)
+                return -1;
+            Transferencias transferencia = new Transferencias(idContaOrigem, idContaDestino, valor, dataHora, comentario);
+            contaOrigem.Saldo -= valor;
+            contaDestino.Saldo += valor;
+            updateConta(contaOrigem);
+            updateConta(contaDestino);
+            return conn.Insert(transferencia);
+        }
+
+        public static Transferencias acessarTransferencia (int id) {
+            System.Collections.Generic.List<Transferencias> transferencia = conn.Query<Transferencias>(string.Format("Select * from Transferencias where ID = {0};", id));
+            if (transferencia.Count > 0)
+                return transferencia[0];
+            else
+                return new Transferencias();
+        }
+
+        public static System.Collections.Generic.List<Transferencias> acessarTransferencias () {
+            return conn.Query<Transferencias>(string.Format("Select * from Transferencias"));
+        }
+
+        public static void updateTransferencia (Transferencias transferencia) {
+            Transferencias antiga = acessarTransferencia(transferencia.ID);
+            if (antiga.Valor == transferencia.Valor || antiga.ID_ContaDestino != transferencia.ID_ContaDestino || antiga.ID_ContaOrigem != transferencia.ID_ContaDestino)
+            {
+                conn.Update(transferencia);
+                return;
+            }
+            Contas contaOrigem = acessarConta(antiga.ID_ContaOrigem);
+            Contas contaDestino = acessarConta(antiga.ID_ContaDestino);
+            if (antiga.Valor < transferencia.Valor)
+            {
+                if (contaDestino.Saldo - (transferencia.Valor - antiga.Valor) < 0)
+                    return;
+                else {
+                    contaOrigem.Saldo += transferencia.Valor - antiga.Valor;
+                    contaDestino.Saldo -= transferencia.Valor - antiga.Valor;
+                }
+            } 
+            else
+            {
+                if (contaOrigem.Saldo - (transferencia.Valor - antiga.Valor) < 0)
+                    return;
+                contaOrigem.Saldo += antiga.Valor - transferencia.Valor;
+                contaDestino.Saldo -= antiga.Valor - transferencia.Valor;
+            }
+            updateConta(contaOrigem);
+            updateConta(contaDestino);
+            conn.Update(transferencia);
+        }
+
+        public static void deleteTransferencia (Transferencias transferencia)
+        {
+            Contas contaOrigem = acessarConta(transferencia.ID_ContaOrigem);
+            Contas contaDestino = acessarConta(transferencia.ID_ContaDestino);
+            if (contaDestino.Saldo - transferencia.Valor < 0) return;
+            contaDestino.Saldo -= transferencia.Valor;
+            contaOrigem.Saldo += transferencia.Valor;
+            updateConta(contaOrigem);
+            updateConta(contaDestino);
+            conn.Delete(transferencia);
+        }
+
+        public static void deleteTransferencia (object transferencia_ID) {
+            Transferencias transferencia = conn.Find<Transferencias>(transferencia_ID);
+            Contas contaOrigem = acessarConta(transferencia.ID_ContaOrigem);
+            Contas contaDestino = acessarConta(transferencia.ID_ContaDestino);
+            if (contaDestino.Saldo - transferencia.Valor < 0) return;
+            contaDestino.Saldo -= transferencia.Valor;
+            contaOrigem.Saldo += transferencia.Valor;
+            updateConta(contaOrigem);
+            updateConta(contaDestino);
+            conn.Delete<Transferencias>(transferencia_ID);
         }
     }
 }
