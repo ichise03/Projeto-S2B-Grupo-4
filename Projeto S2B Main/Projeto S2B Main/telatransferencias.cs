@@ -30,7 +30,7 @@ namespace Projeto_S2B_Main
             DADOS.Add("Item 4");
 
             //Criando a listview e passando os parâmetros
-            ListView List = FindViewById<ListView>(Resource.Id.listView1);
+            ListView List = FindViewById<ListView>(Resource.Id.tranferenciasView);
 
             GerenciamentoLista GL = new GerenciamentoLista(DADOS, this);
 

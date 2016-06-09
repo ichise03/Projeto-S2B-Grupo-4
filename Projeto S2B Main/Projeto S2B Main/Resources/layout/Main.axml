@@ -33,4 +33,10 @@
         android:id="@+id/transferencia"
         android:layout_marginTop="-100dp"
         android:layout_marginLeft="200dp" />
+    <Button
+        android:text="Sair"
+        android:layout_width="match_parent"
+        android:layout_height="60.0dp"
+        android:id="@+id/sair"
+        android:layout_margin="25dp" />
 </LinearLayout>

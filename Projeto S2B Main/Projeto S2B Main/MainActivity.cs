@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -17,7 +18,7 @@ namespace Projeto_S2B_Main {
 			SetContentView(Resource.Layout.Main);
             
             //CREATE DATABASE IF NOT EXISTS
-            SGBD.CreateDatabase();
+            GerenciadorBanco.CreateDatabase();
            
             //Comandos para tratar o click dos botões
 
@@ -28,6 +29,8 @@ namespace Projeto_S2B_Main {
             FindViewById(Resource.Id.lancamentos).Click += Lancamentos;
 
             FindViewById(Resource.Id.transferencia).Click += Transferencias;
+
+			FindViewById(Resource.Id.sair).Click += delegate { Process.KillProcess(Process.MyPid()); };
         }
 
         //Funções para iniciar as novas activities depois do click

@@ -9,11 +9,11 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:id="@+id/listView1" />
+        android:layout_height="500dp"
+        android:id="@+id/lancamentosView" />
     <Button
-        android:text="Criar novo lançamento"
+        android:text="FAZER NOVO LANÇAMENTO"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button1" />
+        android:id="@+id/criarLancamento" />
 </LinearLayout>

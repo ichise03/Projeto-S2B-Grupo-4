@@ -9,11 +9,11 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:id="@+id/listView1" />
+        android:layout_height="500dp"
+        android:id="@+id/categoriasView" />
     <Button
-        android:text="Criar nova categoria"
+        android:text="CRIAR NOVA CATEGORIA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button1" />
+        android:id="@+id/criarCategoria" />
 </LinearLayout>

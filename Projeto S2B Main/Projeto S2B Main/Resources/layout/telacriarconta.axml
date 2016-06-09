@@ -14,13 +14,15 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText1" />
+        android:id="@+id/editText1"
+        android:inputType="text" />
     <TextView
         android:text="Tipo da Conta"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:layout_marginTop="17dp" />
     <RadioGroup
         android:minWidth="25px"
         android:minHeight="25px"
@@ -54,15 +56,26 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
+        android:id="@+id/saldoLabel"
+        android:layout_marginTop="17dp" />
     <EditText
         android:inputType="numberDecimal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2" />
+        android:id="@+id/editText2"
+        android:numeric="decimal" />
     <Button
-        android:text="Criar nova conta"
+        android:text="EXCLUIR CONTA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button1" />
+        android:id="@+id/excluirConta"
+        android:layout_marginTop="98.0dp"
+        android:enabled="false"
+        android:visibility="invisible" />
+    <Button
+        android:text="CRIAR NOVA CONTA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contaButton"
+        android:layout_marginTop="2dp" />
 </LinearLayout>
