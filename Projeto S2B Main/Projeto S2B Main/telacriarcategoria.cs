@@ -23,9 +23,7 @@ namespace Projeto_S2B_Main
             SetContentView(Resource.Layout.telacriarcategoria);
 
             //Ativa o botão de voltar na action bar
-            this.ActionBar.SetDisplayHomeAsUpEnabled(true);
-
-            FindView
+            this.ActionBar.SetDisplayHomeAsUpEnabled(true);            
         }
 
 
