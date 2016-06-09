@@ -10,37 +10,30 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace Projeto_S2B_Main
-{
-    [Activity(Label = "Criar Categoria")]
+namespace Projeto_S2B_Main {
+	[Activity(Label = "Criar Categoria")]
 
-    class telacriarcategoria : Activity
-    {
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
+	class telacriarcategoria : Activity {
+		protected override void OnCreate (Bundle bundle) {
+			base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.telacriarcategoria);
+			SetContentView(Resource.Layout.telacriarcategoria);
 
-            //Ativa o botão de voltar na action bar
-            this.ActionBar.SetDisplayHomeAsUpEnabled(true);
-
-            FindView
-        }
+			//Ativa o botão de voltar na action bar
+			this.ActionBar.SetDisplayHomeAsUpEnabled(true);
+		}
 
 
 
-        //Função que faz o botão de voltar da action bar funcionar
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Android.Resource.Id.Home:
-                    Finish();
-                    return true;
-                default:
-                    return base.OnOptionsItemSelected(item);
-            }
-        }
-    }
+		//Função que faz o botão de voltar da action bar funcionar
+		public override bool OnOptionsItemSelected (IMenuItem item) {
+			switch (item.ItemId) {
+				case Android.Resource.Id.Home:
+					Finish();
+					return true;
+				default:
+					return base.OnOptionsItemSelected(item);
+			}
+		}
+	}
 }
