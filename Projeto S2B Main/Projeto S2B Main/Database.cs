@@ -421,15 +421,20 @@ namespace Projeto_S2B_Main {
         //Lançamento
         public static int adicionarLancamento (int idConta, int idFornecedor, int idCategoria, int valor, TipoLancamento Tipo, DateTime dataHora, string comentario){
             Lancamentos lancamento = new Lancamentos(idConta, idFornecedor, idCategoria, valor, Tipo, dataHora, comentario);
-            Contas conta = acessarConta(idConta);
+			Contas conta = acessarConta(idConta);
+
+			valor = Math.Abs(valor);
+
             if (conta.ID == -1)
                 return -1;
             if (Tipo == TipoLancamento.Creditar)
                 conta.Saldo += valor;
             else
                 conta.Saldo -= valor;
-            updateConta(conta);
-            return conn.Insert(lancamento);
+
+			updateConta(conta);
+
+			return conn.Insert(lancamento);
         }
 
         public static Lancamentos acessarLancamento (int id) {

@@ -63,8 +63,8 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f050004
 			public const int ScrollViewID = 2131034116;
 			
-			// aapt resource value: 0x7f05001f
-			public const int autoCompleteTextView1 = 2131034143;
+			// aapt resource value: 0x7f05001e
+			public const int autoCompleteTextView1 = 2131034142;
 			
 			// aapt resource value: 0x7f050020
 			public const int button1 = 2131034144;
@@ -96,8 +96,8 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f050038
 			public const int criarTransferencia = 2131034168;
 			
-			// aapt resource value: 0x7f05001d
-			public const int editText1 = 2131034141;
+			// aapt resource value: 0x7f05001f
+			public const int editText1 = 2131034143;
 			
 			// aapt resource value: 0x7f050027
 			public const int editText2 = 2131034151;
@@ -171,8 +171,8 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f050007
 			public const int textView1 = 2131034119;
 			
-			// aapt resource value: 0x7f05001e
-			public const int textView2 = 2131034142;
+			// aapt resource value: 0x7f05001d
+			public const int textView2 = 2131034141;
 			
 			// aapt resource value: 0x7f05002c
 			public const int textView3 = 2131034156;
