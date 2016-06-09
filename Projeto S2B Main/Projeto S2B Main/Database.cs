@@ -213,11 +213,14 @@ namespace Projeto_S2B_Main {
 			return conn;
 		}
 
-		public static void CloseConnection () {
+		public static void CloseConnection () 
+        {
 			conn.Close();
 		}
 
-		public static void CreateDatabase () {
+		public static void CreateDatabase () 
+            {
+
 			conn.CreateTable<Contas>();
 			conn.CreateTable<Categorias>();
 			conn.CreateTable<Atributos>();
@@ -226,7 +229,8 @@ namespace Projeto_S2B_Main {
 			conn.CreateTable<Lancamento_Atributo>();
 
 			//Registra a categoria padrão se ela ainda não existir
-			if (conn.Query<Categorias>("SELECT * FROM Categorias WHERE Nome = 'Indeterminado'").Count == 0) {
+			if (conn.Query<Categorias>("SELECT * FROM Categorias WHERE Nome = 'Indeterminado'").Count == 0) 
+                {
 				conn.Insert(new Categorias() {
 					Grupo = "Outros",
 					Nome = "Indeterminado"
@@ -235,12 +239,14 @@ namespace Projeto_S2B_Main {
 		}
 
 		//Contas
-		public static int adicionarConta (String nome, decimal saldo, TipoConta tipo) {
+		public static int adicionarConta (String nome, decimal saldo, TipoConta tipo) 
+        {
 			Contas conta = new Contas(saldo, tipo, nome);
 			return conn.Insert(conta);
 		}
 
-		public static Contas acessarConta (int id) {
+		public static Contas acessarConta (int id) 
+        {
 			System.Collections.Generic.List<Contas> conta = conn.Query<Contas>(string.Format("Select * from Contas where ID = {0};", id));
 			if (conta.Count > 0)
 				return conta[0];
@@ -249,11 +255,13 @@ namespace Projeto_S2B_Main {
 
 		}
 	
-		public static System.Collections.Generic.List<Contas> acessarContas () {
+		public static System.Collections.Generic.List<Contas> acessarContas ()
+        {
 			return conn.Query<Contas>(string.Format("Select * from Contas"));
 		}
 
-		public static System.Collections.Generic.List<String> acessarNomeContas () {
+		public static System.Collections.Generic.List<String> acessarNomeContas ()
+        {
 			System.Collections.Generic.List<Contas> contas = conn.Query<Contas>(string.Format("Select * from Contas"));
 			System.Collections.Generic.List<String> nomes = new System.Collections.Generic.List<string>();
 			foreach (Contas i in contas)
@@ -262,25 +270,30 @@ namespace Projeto_S2B_Main {
 
 		}
 
-		public static void updateConta (Contas conta) {
+		public static void updateConta (Contas conta) 
+        {
 			conn.Update(conta);
 		}
 
-		public static void deleteConta (Contas conta) {
+		public static void deleteConta (Contas conta) 
+        {
 			conn.Delete(conta);
 		}
 
-		public static void deleteConta (object conta_ID) {
+		public static void deleteConta (object conta_ID) 
+        {
 			conn.Delete<Contas>(conta_ID);
 		}
 
         //Fornecedor
-		public static int adicionarFornecedor (String nome) {
+		public static int adicionarFornecedor (String nome) 
+        {
 			Fornecedores fornecedor = new Fornecedores(nome);
 			return conn.Insert(fornecedor);
 		}
 
-		public static Fornecedores acessarFornecedor (int id) {
+		public static Fornecedores acessarFornecedor (int id) 
+        {
 			System.Collections.Generic.List<Fornecedores> fornecedor = conn.Query<Fornecedores>(string.Format("Select * from Fornecedores where ID = {0};", id));
 			if (fornecedor.Count > 0)
 				return fornecedor[0];
@@ -288,25 +301,30 @@ namespace Projeto_S2B_Main {
 				return new Fornecedores();
 		}
 
-		public static System.Collections.Generic.List<Fornecedores> acessarFornecedores () {
+		public static System.Collections.Generic.List<Fornecedores> acessarFornecedores ()
+        {
 			return conn.Query<Fornecedores>(string.Format("Select * from Fornecedores"));
 		}
 
-		public static void updateFornecedor (Fornecedores fornecedor) {
+		public static void updateFornecedor (Fornecedores fornecedor)
+        {
 			conn.Update(fornecedor);
 		}
 
-        public static void deleteFornecedor (Fornecedores fornecedor) {
+        public static void deleteFornecedor (Fornecedores fornecedor)
+        {
             conn.Delete(fornecedor);
         }
 
         //Categorias
-		public static int adicionarCategorias (String nome, String grupo) {
+		public static int adicionarCategorias (String nome, String grupo)
+        {
 			Categorias categoria = new Categorias(nome, grupo);
 			return conn.Insert(categoria);
 		}
 
-		public static Categorias acessarCategoria (int id) {
+		public static Categorias acessarCategoria (int id) 
+        {
 			System.Collections.Generic.List<Categorias> categoria = conn.Query<Categorias>(string.Format("Select * from Categorias where ID = {0};", id));
 			if (categoria.Count > 0)
 				return categoria[0];
@@ -315,25 +333,30 @@ namespace Projeto_S2B_Main {
 
 		}
 
-		public static System.Collections.Generic.List<Categorias> acessarCategorias () {
+		public static System.Collections.Generic.List<Categorias> acessarCategorias () 
+        {
 			return conn.Query<Categorias>(string.Format("Select * from Categorias"));
 		}
 
-		public static void updateCategoria (Categorias categoria) {
+		public static void updateCategoria (Categorias categoria) 
+        {
 			conn.Update(categoria);
 		}
 
-		public static void deleteCategoria (Categorias categoria) {
+		public static void deleteCategoria (Categorias categoria) 
+        {
 			conn.Delete(categoria);
 		}
 
         //Atributo
-        public static int adicionarAtributo (int idCategoria, String nome, TipoAtributo tipo) {
+        public static int adicionarAtributo (int idCategoria, String nome, TipoAtributo tipo)
+        {
             Atributos atributo = new Atributos(idCategoria, nome, tipo);
             return conn.Insert(atributo);
         }
 
-        public static Atributos acessarAtributo (int id) {
+        public static Atributos acessarAtributo (int id)
+        {
             System.Collections.Generic.List<Atributos> atributo = conn.Query<Atributos>(string.Format("Select * from Atributo where ID = {0};", id));
             if (atributo.Count > 0)
                 return atributo[0];
@@ -341,15 +364,18 @@ namespace Projeto_S2B_Main {
 				return new Atributos();
         }
 
-        public static System.Collections.Generic.List<Atributos> acessarAtributo () {
+        public static System.Collections.Generic.List<Atributos> acessarAtributo ()
+        {
             return conn.Query<Atributos>(string.Format("Select * from Atributo"));
         }
 
-        public static void updateAtributo (Atributos atributo) {
+        public static void updateAtributo (Atributos atributo)
+        {
             conn.Update(atributo);
         }
 
-        public static void deleteAtributo (Atributos atributo) {
+        public static void deleteAtributo (Atributos atributo)
+        {
             conn.Delete(atributo);
         }
 
@@ -367,7 +393,8 @@ namespace Projeto_S2B_Main {
             return conn.Insert(lancamento);
         }
 
-        public static Lancamentos acessarLancamento (int id) {
+        public static Lancamentos acessarLancamento (int id) 
+        {
             System.Collections.Generic.List<Lancamentos> lancamento = conn.Query<Lancamentos>(string.Format("Select * from Lancamentos where ID = {0};", id));
             if (lancamento.Count > 0)
                 return lancamento[0];
@@ -375,15 +402,18 @@ namespace Projeto_S2B_Main {
 				return new Lancamentos();
         }
 
-        public static System.Collections.Generic.List<Lancamentos> acessarlancamento () {
+        public static System.Collections.Generic.List<Lancamentos> acessarlancamento () 
+        {
             return conn.Query<Lancamentos>(string.Format("Select * from Lancamentos"));
         }
 
-        public static void updatelancamento (Lancamentos lancamento) {
+        public static void updatelancamento (Lancamentos lancamento)
+        {
             conn.Update(lancamento);
         }
 
-        public static void deletelancamneto (Lancamentos lancamento) {
+        public static void deletelancamneto (Lancamentos lancamento) 
+        {
             conn.Delete(lancamento);
         }
     }
