@@ -9,7 +9,7 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="475dp"
         android:id="@+id/tranferenciasView" />
     <Button
         android:text="FAZER NOVA TRANSFERÊNCIA"
