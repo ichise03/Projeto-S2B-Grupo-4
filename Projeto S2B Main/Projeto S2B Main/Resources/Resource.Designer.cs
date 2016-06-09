@@ -47,9 +47,6 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f020000
 			public const int Icon = 2130837504;
 			
-			// aapt resource value: 0x7f020001
-			public const int monoandroidsplash = 2130837505;
-			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -63,83 +60,110 @@ namespace Projeto_S2B_Main
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f060002
-			public const int categorias = 2131099650;
+			// aapt resource value: 0x7f05000d
+			public const int autoCompleteTextView1 = 2131034125;
 			
-			// aapt resource value: 0x7f060006
-			public const int categoriasView = 2131099654;
+			// aapt resource value: 0x7f05000e
+			public const int button1 = 2131034126;
 			
-			// aapt resource value: 0x7f060015
-			public const int contaButton = 2131099669;
+			// aapt resource value: 0x7f050002
+			public const int categorias = 2131034114;
 			
-			// aapt resource value: 0x7f060001
-			public const int contas = 2131099649;
+			// aapt resource value: 0x7f050006
+			public const int categoriasView = 2131034118;
 			
-			// aapt resource value: 0x7f060008
-			public const int contasView = 2131099656;
+			// aapt resource value: 0x7f050017
+			public const int contaButton = 2131034135;
 			
-			// aapt resource value: 0x7f060007
-			public const int criarCategoria = 2131099655;
+			// aapt resource value: 0x7f050001
+			public const int contas = 2131034113;
 			
-			// aapt resource value: 0x7f060009
-			public const int criarConta = 2131099657;
+			// aapt resource value: 0x7f050008
+			public const int contasView = 2131034120;
 			
-			// aapt resource value: 0x7f060017
-			public const int criarLancamento = 2131099671;
+			// aapt resource value: 0x7f050007
+			public const int criarCategoria = 2131034119;
 			
-			// aapt resource value: 0x7f060019
-			public const int criarTransferencia = 2131099673;
+			// aapt resource value: 0x7f050009
+			public const int criarConta = 2131034121;
 			
-			// aapt resource value: 0x7f06000b
-			public const int editText1 = 2131099659;
+			// aapt resource value: 0x7f050020
+			public const int criarLancamento = 2131034144;
 			
-			// aapt resource value: 0x7f060013
-			public const int editText2 = 2131099667;
+			// aapt resource value: 0x7f050022
+			public const int criarTransferencia = 2131034146;
 			
-			// aapt resource value: 0x7f060014
-			public const int excluirConta = 2131099668;
+			// aapt resource value: 0x7f05000b
+			public const int editText1 = 2131034123;
 			
-			// aapt resource value: 0x7f060003
-			public const int lancamentos = 2131099651;
+			// aapt resource value: 0x7f050015
+			public const int editText2 = 2131034133;
 			
-			// aapt resource value: 0x7f060016
-			public const int lancamentosView = 2131099670;
+			// aapt resource value: 0x7f050016
+			public const int excluirConta = 2131034134;
 			
-			// aapt resource value: 0x7f06000e
-			public const int radioButton1 = 2131099662;
+			// aapt resource value: 0x7f050003
+			public const int lancamentos = 2131034115;
 			
-			// aapt resource value: 0x7f06000f
-			public const int radioButton2 = 2131099663;
+			// aapt resource value: 0x7f05001f
+			public const int lancamentosView = 2131034143;
 			
-			// aapt resource value: 0x7f060010
-			public const int radioButton3 = 2131099664;
+			// aapt resource value: 0x7f050010
+			public const int radioButton1 = 2131034128;
 			
-			// aapt resource value: 0x7f060011
-			public const int radioButton4 = 2131099665;
+			// aapt resource value: 0x7f050011
+			public const int radioButton2 = 2131034129;
 			
-			// aapt resource value: 0x7f06000d
-			public const int radioGroup1 = 2131099661;
+			// aapt resource value: 0x7f050012
+			public const int radioButton3 = 2131034130;
 			
-			// aapt resource value: 0x7f060005
-			public const int sair = 2131099653;
+			// aapt resource value: 0x7f050013
+			public const int radioButton4 = 2131034131;
 			
-			// aapt resource value: 0x7f060012
-			public const int saldoLabel = 2131099666;
+			// aapt resource value: 0x7f05000f
+			public const int radioGroup1 = 2131034127;
 			
-			// aapt resource value: 0x7f060000
-			public const int textLabel = 2131099648;
+			// aapt resource value: 0x7f050005
+			public const int sair = 2131034117;
 			
-			// aapt resource value: 0x7f06000a
-			public const int textView1 = 2131099658;
+			// aapt resource value: 0x7f050014
+			public const int saldoLabel = 2131034132;
 			
-			// aapt resource value: 0x7f06000c
-			public const int textView2 = 2131099660;
+			// aapt resource value: 0x7f050018
+			public const int spinner1 = 2131034136;
 			
-			// aapt resource value: 0x7f060018
-			public const int tranferenciasView = 2131099672;
+			// aapt resource value: 0x7f050019
+			public const int spinner2 = 2131034137;
 			
-			// aapt resource value: 0x7f060004
-			public const int transferencia = 2131099652;
+			// aapt resource value: 0x7f05001b
+			public const int spinner3 = 2131034139;
+			
+			// aapt resource value: 0x7f050000
+			public const int textLabel = 2131034112;
+			
+			// aapt resource value: 0x7f05000a
+			public const int textView1 = 2131034122;
+			
+			// aapt resource value: 0x7f05000c
+			public const int textView2 = 2131034124;
+			
+			// aapt resource value: 0x7f05001a
+			public const int textView3 = 2131034138;
+			
+			// aapt resource value: 0x7f05001c
+			public const int textView4 = 2131034140;
+			
+			// aapt resource value: 0x7f05001d
+			public const int textView5 = 2131034141;
+			
+			// aapt resource value: 0x7f05001e
+			public const int textView6 = 2131034142;
+			
+			// aapt resource value: 0x7f050021
+			public const int tranferenciasView = 2131034145;
+			
+			// aapt resource value: 0x7f050004
+			public const int transferencia = 2131034116;
 			
 			static Id()
 			{
@@ -173,10 +197,16 @@ namespace Projeto_S2B_Main
 			public const int telacriarconta = 2130903045;
 			
 			// aapt resource value: 0x7f030006
-			public const int telalancamentos = 2130903046;
+			public const int telafazertransferencia = 2130903046;
 			
 			// aapt resource value: 0x7f030007
-			public const int telatransferencias = 2130903047;
+			public const int telagerarlancamento = 2130903047;
+			
+			// aapt resource value: 0x7f030008
+			public const int telalancamentos = 2130903048;
+			
+			// aapt resource value: 0x7f030009
+			public const int telatransferencias = 2130903049;
 			
 			static Layout()
 			{
@@ -203,22 +233,6 @@ namespace Projeto_S2B_Main
 			}
 			
 			private String()
-			{
-			}
-		}
-		
-		public partial class Style
-		{
-			
-			// aapt resource value: 0x7f050000
-			public const int Mono_Android_Theme_Splash = 2131034112;
-			
-			static Style()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Style()
 			{
 			}
 		}

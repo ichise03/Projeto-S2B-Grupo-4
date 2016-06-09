@@ -58,7 +58,10 @@
     <Compile Include="SQLiteAsync.cs" />
     <Compile Include="telacategorias.cs" />
     <Compile Include="telacontas.cs" />
+    <Compile Include="telacriarcategoria.cs" />
     <Compile Include="telacriarconta.cs" />
+    <Compile Include="telafazertransferencia.cs" />
+    <Compile Include="telagerarlancamento.cs" />
     <Compile Include="telalancamentos.cs" />
     <Compile Include="telatransferencias.cs" />
   </ItemGroup>
@@ -85,6 +88,12 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\telacriarcategoria.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\telagerarlancamento.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\telafazertransferencia.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

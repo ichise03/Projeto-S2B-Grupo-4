@@ -39,6 +39,15 @@ namespace Projeto_S2B_Main
 
             //Ativa o botão de voltar na action bar
             this.ActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            //Chamada para a função que chama a nova tela
+            FindViewById(Resource.Id.criarTransferencia).Click += NovaTransferencia;
+        }
+
+        //Função que chama a nova tela
+        void NovaTransferencia(object sender, EventArgs e)
+        {
+            StartActivity(typeof(telafazertransferencia));
         }
 
         //Função que define o que acontece quando clica no item da listview
