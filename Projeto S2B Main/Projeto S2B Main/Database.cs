@@ -200,6 +200,8 @@ namespace Projeto_S2B_Main {
 	/// OBS.: a classe não deve ser instanciada e seus métodos são sempre estáticos.
 	/// </summary>
 	static class GerenciadorBanco {
+		private static SQLiteConnection conn = Connect();
+
 		public static SQLiteConnection Connect () {
 			//USE databasePath COMO localhost
 			string databasePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
@@ -211,9 +213,11 @@ namespace Projeto_S2B_Main {
 			return conn;
 		}
 
-		public static void CreateDatabase () {
-			SQLiteConnection conn = Connect();
+		public static void CloseConnection () {
+			conn.Close();
+		}
 
+		public static void CreateDatabase () {
 			conn.CreateTable<Contas>();
 			conn.CreateTable<Categorias>();
 			conn.CreateTable<Atributos>();
@@ -228,20 +232,16 @@ namespace Projeto_S2B_Main {
 					Nome = "Indeterminado"
 				});
 			}
-
-			conn.Close();
 		}
 
 		//Contas
 		public static int adicionarConta (String nome, decimal saldo, TipoConta tipo) {
-			SQLiteConnection bd = Connect();
 			Contas conta = new Contas(saldo, tipo, nome);
-			return bd.Insert(conta);
+			return conn.Insert(conta);
 		}
 
 		public static Contas acessarConta (int id) {
-			SQLiteConnection bd = Connect();
-			System.Collections.Generic.List<Contas> conta = bd.Query<Contas>(string.Format("Select * from Contas where ID = {0};", id));
+			System.Collections.Generic.List<Contas> conta = conn.Query<Contas>(string.Format("Select * from Contas where ID = {0};", id));
 			if (conta.Count > 0)
 				return conta[0];
 			else
@@ -250,13 +250,11 @@ namespace Projeto_S2B_Main {
 		}
 	
 		public static System.Collections.Generic.List<Contas> acessarContas () {
-			SQLiteConnection bd = Connect();
-			return bd.Query<Contas>(string.Format("Select * from Contas"));
+			return conn.Query<Contas>(string.Format("Select * from Contas"));
 		}
 
 		public static System.Collections.Generic.List<String> acessarNomeContas () {
-			SQLiteConnection bd = Connect();
-			System.Collections.Generic.List<Contas> contas = bd.Query<Contas>(string.Format("Select * from Contas"));
+			System.Collections.Generic.List<Contas> contas = conn.Query<Contas>(string.Format("Select * from Contas"));
 			System.Collections.Generic.List<String> nomes = new System.Collections.Generic.List<string>();
 			foreach (Contas i in contas)
 				nomes.Add(i.Nome);
@@ -265,25 +263,25 @@ namespace Projeto_S2B_Main {
 		}
 
 		public static void updateConta (Contas conta) {
-			SQLiteConnection bd = Connect();
-			bd.Update(conta);
+			conn.Update(conta);
+		}
+
+		public static void deleteConta (Contas conta) {
+			conn.Delete(conta);
 		}
 
 		public static void deleteConta (object conta_ID) {
-			SQLiteConnection bd = Connect();
-			bd.Delete<Contas>(conta_ID);
+			conn.Delete<Contas>(conta_ID);
 		}
 
         //Fornecedor
 		public static int adicionarFornecedor (String nome) {
-			SQLiteConnection bd = Connect();
 			Fornecedores fornecedor = new Fornecedores(nome);
-			return bd.Insert(fornecedor);
+			return conn.Insert(fornecedor);
 		}
 
 		public static Fornecedores acessarFornecedor (int id) {
-			SQLiteConnection bd = Connect();
-			System.Collections.Generic.List<Fornecedores> fornecedor = bd.Query<Fornecedores>(string.Format("Select * from Fornecedores where ID = {0};", id));
+			System.Collections.Generic.List<Fornecedores> fornecedor = conn.Query<Fornecedores>(string.Format("Select * from Fornecedores where ID = {0};", id));
 			if (fornecedor.Count > 0)
 				return fornecedor[0];
 			else
@@ -291,30 +289,25 @@ namespace Projeto_S2B_Main {
 		}
 
 		public static System.Collections.Generic.List<Fornecedores> acessarFornecedores () {
-			SQLiteConnection bd = Connect();
-			return bd.Query<Fornecedores>(string.Format("Select * from Fornecedores"));
+			return conn.Query<Fornecedores>(string.Format("Select * from Fornecedores"));
 		}
 
 		public static void updateFornecedor (Fornecedores fornecedor) {
-			SQLiteConnection bd = Connect();
-			bd.Update(fornecedor);
+			conn.Update(fornecedor);
 		}
 
         public static void deleteFornecedor (Fornecedores fornecedor) {
-            SQLiteConnection bd = Connect();
-            bd.Delete(fornecedor);
+            conn.Delete(fornecedor);
         }
 
         //Categorias
 		public static int adicionarCategorias (String nome, String grupo) {
-			SQLiteConnection bd = Connect();
 			Categorias categoria = new Categorias(nome, grupo);
-			return bd.Insert(categoria);
+			return conn.Insert(categoria);
 		}
 
 		public static Categorias acessarCategoria (int id) {
-			SQLiteConnection bd = Connect();
-			System.Collections.Generic.List<Categorias> categoria = bd.Query<Categorias>(string.Format("Select * from Categorias where ID = {0};", id));
+			System.Collections.Generic.List<Categorias> categoria = conn.Query<Categorias>(string.Format("Select * from Categorias where ID = {0};", id));
 			if (categoria.Count > 0)
 				return categoria[0];
 			else
@@ -323,30 +316,25 @@ namespace Projeto_S2B_Main {
 		}
 
 		public static System.Collections.Generic.List<Categorias> acessarCategorias () {
-			SQLiteConnection bd = Connect();
-			return bd.Query<Categorias>(string.Format("Select * from Categorias"));
+			return conn.Query<Categorias>(string.Format("Select * from Categorias"));
 		}
 
 		public static void updateCategoria (Categorias categoria) {
-			SQLiteConnection bd = Connect();
-			bd.Update(categoria);
+			conn.Update(categoria);
 		}
 
 		public static void deleteCategoria (Categorias categoria) {
-			SQLiteConnection bd = Connect();
-			bd.Delete(categoria);
+			conn.Delete(categoria);
 		}
 
         //Atributo
         public static int adicionarAtributo (int idCategoria, String nome, TipoAtributo tipo) {
-            SQLiteConnection bd = Connect();
             Atributos atributo = new Atributos(idCategoria, nome, tipo);
-            return bd.Insert(atributo);
+            return conn.Insert(atributo);
         }
 
         public static Atributos acessarAtributo (int id) {
-            SQLiteConnection bd = Connect();
-            System.Collections.Generic.List<Atributos> atributo = bd.Query<Atributos>(string.Format("Select * from Atributo where ID = {0};", id));
+            System.Collections.Generic.List<Atributos> atributo = conn.Query<Atributos>(string.Format("Select * from Atributo where ID = {0};", id));
             if (atributo.Count > 0)
                 return atributo[0];
             else
@@ -354,23 +342,19 @@ namespace Projeto_S2B_Main {
         }
 
         public static System.Collections.Generic.List<Atributos> acessarAtributo () {
-            SQLiteConnection bd = Connect();
-            return bd.Query<Atributos>(string.Format("Select * from Atributo"));
+            return conn.Query<Atributos>(string.Format("Select * from Atributo"));
         }
 
         public static void updateAtributo (Atributos atributo) {
-            SQLiteConnection bd = Connect();
-            bd.Update(atributo);
+            conn.Update(atributo);
         }
 
         public static void deleteAtributo (Atributos atributo) {
-            SQLiteConnection bd = Connect();
-            bd.Delete(atributo);
+            conn.Delete(atributo);
         }
 
         //Lançamento
         public static int adicionarLancamento (int idConta, int idFornecedor, int idCategoria, int valor, TipoLancamento Tipo, DateTime dataHora, string comentario){
-            SQLiteConnection bd = Connect();
             Lancamentos lancamento = new Lancamentos(idConta, idFornecedor, idCategoria, valor, Tipo, dataHora, comentario);
             Contas conta = acessarConta(idConta);
             if (conta.ID == -1)
@@ -380,12 +364,11 @@ namespace Projeto_S2B_Main {
             else
                 conta.Saldo -= valor;
             updateConta(conta);
-            return bd.Insert(lancamento);
+            return conn.Insert(lancamento);
         }
 
         public static Lancamentos acessarLancamento (int id) {
-            SQLiteConnection bd = Connect();
-            System.Collections.Generic.List<Lancamentos> lancamento = bd.Query<Lancamentos>(string.Format("Select * from Lancamentos where ID = {0};", id));
+            System.Collections.Generic.List<Lancamentos> lancamento = conn.Query<Lancamentos>(string.Format("Select * from Lancamentos where ID = {0};", id));
             if (lancamento.Count > 0)
                 return lancamento[0];
             else
@@ -393,18 +376,15 @@ namespace Projeto_S2B_Main {
         }
 
         public static System.Collections.Generic.List<Lancamentos> acessarlancamento () {
-            SQLiteConnection bd = Connect();
-            return bd.Query<Lancamentos>(string.Format("Select * from Lancamentos"));
+            return conn.Query<Lancamentos>(string.Format("Select * from Lancamentos"));
         }
 
         public static void updatelancamento (Lancamentos lancamento) {
-            SQLiteConnection bd = Connect();
-            bd.Update(lancamento);
+            conn.Update(lancamento);
         }
 
         public static void deletelancamneto (Lancamentos lancamento) {
-            SQLiteConnection bd = Connect();
-            bd.Delete(lancamento);
+            conn.Delete(lancamento);
         }
     }
 }

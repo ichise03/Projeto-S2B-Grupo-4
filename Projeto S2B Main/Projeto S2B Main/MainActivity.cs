@@ -33,9 +33,15 @@ namespace Projeto_S2B_Main {
 			FindViewById(Resource.Id.sair).Click += delegate { Process.KillProcess(Process.MyPid()); };
         }
 
-        //Funções para iniciar as novas activities depois do click
+		protected override void OnDestroy () {
+			GerenciadorBanco.CloseConnection();
 
-        void Contas(object sender, EventArgs e)
+			base.OnDestroy();
+		}
+
+		//Funções para iniciar as novas activities depois do click
+
+		void Contas(object sender, EventArgs e)
         {
             StartActivity(typeof(telacontas));
         }
