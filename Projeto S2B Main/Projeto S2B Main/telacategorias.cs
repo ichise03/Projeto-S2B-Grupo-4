@@ -16,7 +16,7 @@ namespace Projeto_S2B_Main
 
     class telacategorias : Activity
     {
-        List<string> DADOS = new List<string>();
+        List<Categorias> DADOS = new List<Categorias>();
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -24,25 +24,30 @@ namespace Projeto_S2B_Main
 
             SetContentView(Resource.Layout.telacategorias);
 
-            //Aqui serão adicionados os dados do DB
-            DADOS.Add("Item 1");
-            DADOS.Add("Item 2");
-            DADOS.Add("Item 3");
-            DADOS.Add("Item 4");
+            LoadList();
 
-            //Criando a listview e passando os parâmetros
-            ListView List = FindViewById<ListView>(Resource.Id.categoriasView);
-
-            GerenciamentoLista GL = new GerenciamentoLista(DADOS, this);
-
-            List.Adapter = GL;
-            List.ItemClick += List_ItemClick;
+            FindViewById<ListView>(Resource.Id.categoriasView).ItemClick += List_ItemClick;
 
             //Ativa o botão de voltar na action bar
             this.ActionBar.SetDisplayHomeAsUpEnabled(true);
 
-
             FindViewById(Resource.Id.criarCategoria).Click += NovaCategoria;
+        }
+
+        public void LoadList()
+        {
+            //Aqui serão adicionados os dados do DB
+            DADOS = GerenciadorBanco.acessarCategorias();
+
+            //Criando a listview e passando os parâmetros
+            List<string> nomes = new List<string>();
+            DADOS.ForEach((Categorias i) => {
+                nomes.Add(i.Nome);
+            });
+
+            GerenciamentoLista GL = new GerenciamentoLista(nomes, this);
+
+            FindViewById<ListView>(Resource.Id.categoriasView).Adapter = GL;
         }
 
         //Função para chamar a nova tela de criar categoria
@@ -54,7 +59,14 @@ namespace Projeto_S2B_Main
         //Função que define o que acontece quando clica no item da listview
         void List_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            Toast.MakeText(this, DADOS[e.Position], ToastLength.Short).Show();
+            Intent intent = new Intent(this, typeof(telacriarcategoria));
+
+            intent.PutExtra("isUpdate", true);
+            intent.PutExtra("categoriaID", DADOS[e.Position].ID);
+            intent.PutExtra("categoriaNome", DADOS[e.Position].Nome);
+            intent.PutExtra("categoriaGrupo", DADOS[e.Position].Grupo);            
+
+            StartActivity(intent);
         }
 
         //Função que faz o botão de voltar da action bar funcionar
