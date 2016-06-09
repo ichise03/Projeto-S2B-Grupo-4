@@ -40,6 +40,15 @@ namespace Projeto_S2B_Main
 
             //Ativa o botão de voltar na action bar
             this.ActionBar.SetDisplayHomeAsUpEnabled(true);
+
+            //Chamada para a nova tela do botão gerar lançamento
+            FindViewById(Resource.Id.criarLancamento).Click += NovoLancamento;
+        }
+
+        //Função para startar a nova tela
+        void NovoLancamento(object sender, EventArgs e)
+        {
+            StartActivity(typeof(telagerarlancamento));
         }
 
         //Função que define o que acontece quando clica no item da listview
