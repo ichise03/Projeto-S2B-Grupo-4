@@ -18,15 +18,16 @@ namespace Projeto_S2B_Main
     {
         List<Lancamentos> DADOS = new List<Lancamentos>();
 
-        protected override void OnCreate(Bundle bundle)
-        {
+        protected override void OnCreate (Bundle bundle) {
             base.OnCreate(bundle);
 
             SetContentView(Resource.Layout.telalancamentos);
 
-            LoadList();
+            GerenciadorBanco.adicionarLancamento(2, 3, 5, 300, TipoLancamento.Debitar, new DateTime(2016, 03, 15), "Parabéns a todos. Hoje foi produtivo!");
 
-            FindViewById<ListView>(Resource.Id.lancamentosView).ItemClick += List_ItemClick;           
+            //Aqui serão adicionados os dados do DB
+            LoadList();
+            FindViewById<ListView>(Resource.Id.lancamentosView).ItemClick += List_ItemClick;
 
             //Ativa o botão de voltar na action bar
             this.ActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -35,11 +36,15 @@ namespace Projeto_S2B_Main
             FindViewById(Resource.Id.criarLancamento).Click += NovoLancamento;
         }
 
-        public void LoadList()
-        {
-            //Implementar
-        }
+        public void LoadList () {
+            //Aqui serão adicionados os dados do DB
 
+            DADOS = GerenciadorBanco.acessarLancamento();
+
+            gerenciamentolistalancamentos GL = new gerenciamentolistalancamentos(DADOS, this);
+            Console.WriteLine("C:" + GL.Count);
+            FindViewById<ListView>(Resource.Id.lancamentosView).Adapter = GL;
+        }
         //Função para startar a nova tela
         void NovoLancamento(object sender, EventArgs e)
         {
