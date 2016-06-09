@@ -67,7 +67,7 @@
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
             p1:id="@+id/textView1"
-            p1:layout_marginTop="16" />
+            p1:layout_marginTop="16dp" />
         <TextView
             p1:text="------"
             p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -80,7 +80,7 @@
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
             p1:id="@+id/textView1"
-            p1:layout_marginTop="16" />
+            p1:layout_marginTop="16dp" />
         <TextView
             p1:text="------"
             p1:textAppearance="?android:attr/textAppearanceLarge"
@@ -93,7 +93,7 @@
             p1:layout_width="match_parent"
             p1:layout_height="wrap_content"
             p1:id="@+id/textView1"
-            p1:layout_marginTop="16" />
+            p1:layout_marginTop="16dp" />
         <TextView
             p1:text="------"
             p1:textAppearance="?android:attr/textAppearanceLarge"
