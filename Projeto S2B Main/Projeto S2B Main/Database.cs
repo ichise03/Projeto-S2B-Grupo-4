@@ -1,5 +1,6 @@
 using SQLite;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Projeto_S2B_Main {
@@ -139,7 +140,7 @@ namespace Projeto_S2B_Main {
 			ID = -1;
 		}
 
-        public Lancamentos (int idConta, int idFornecedor, int idCategoria, int valor, TipoLancamento tipo, DateTime dataHora, string comentario) {
+        public Lancamentos (int idConta, int idFornecedor, int idCategoria, decimal valor, TipoLancamento tipo, DateTime dataHora, string comentario) {
             ID_Conta = idConta;
             ID_Fornecedor = idFornecedor;
             ID_Categoria = idCategoria;
@@ -419,7 +420,7 @@ namespace Projeto_S2B_Main {
         }
 
         //Lançamento
-        public static int adicionarLancamento (int idConta, int idFornecedor, int idCategoria, int valor, TipoLancamento Tipo, DateTime dataHora, string comentario){
+        public static int adicionarLancamento (int idConta, int idFornecedor, int idCategoria, decimal valor, TipoLancamento Tipo, DateTime dataHora, string comentario){
             Lancamentos lancamento = new Lancamentos(idConta, idFornecedor, idCategoria, valor, Tipo, dataHora, comentario);
 			Contas conta = acessarConta(idConta);
 
@@ -575,5 +576,17 @@ namespace Projeto_S2B_Main {
             updateConta(contaDestino);
             conn.Delete<Transferencias>(transferencia_ID);
         }
-    }
+
+		public static string[] SelectGrupos () {
+			List<Categorias> distinct = conn.Query<Categorias>("SELECT DISTINCT Grupo FROM Categorias");
+			List<string> grupos = new List<string>();
+
+			distinct.ForEach((Categorias categoria) => {
+				grupos.Add(categoria.Grupo);
+			});
+
+			return grupos.ToArray();
+		}
+
+	}
 }

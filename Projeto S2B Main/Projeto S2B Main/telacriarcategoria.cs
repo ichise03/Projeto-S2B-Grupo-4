@@ -21,6 +21,8 @@ namespace Projeto_S2B_Main {
 
 			//Ativa o botão de voltar na action bar
 			this.ActionBar.SetDisplayHomeAsUpEnabled(true);
+
+			string[] autoCompleteOptions = GerenciadorBanco.SelectGrupos();
 		}
 
 
