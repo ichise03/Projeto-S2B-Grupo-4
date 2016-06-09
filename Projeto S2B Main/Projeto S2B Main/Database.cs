@@ -182,7 +182,17 @@ namespace Projeto_S2B_Main {
     ///	);
     /// </summary>
     class Lancamento_Atributo {
-        [PrimaryKey, AutoIncrement]
+		public Lancamento_Atributo () {
+			ID = -1;
+		}
+
+		public Lancamento_Atributo (int idLancamento, int idAtributo, string valor) {
+			ID_Lancamento = idLancamento;
+			ID_Atributo = idAtributo;
+			Valor = valor;
+		}
+
+		[PrimaryKey, AutoIncrement]
         public int ID { get; set; }
 
         [NotNull]
@@ -193,16 +203,48 @@ namespace Projeto_S2B_Main {
 
         [NotNull]
         public string Valor { get; set; }
-
-        public Lancamento_Atributo () { ID = -1; }
-
-        public Lancamento_Atributo (int idLancamento, int idAtributo, string valor) 
-        {
-            ID_Lancamento = idLancamento;
-            ID_Atributo = idAtributo;
-            Valor = valor;
-        }
     }
+
+	/// <summary>
+	/// CREATE TABLE Transferencias (
+	///		ID int PRIMARY KEY AUTO_INCREMENT,
+	///		ID_ContaOrigem int NOT NULL,
+	///		ID_ContaDestino int NOT NULL,
+	///		Valor decimal(10,2) NOT NULL,
+	///		Comentario VARCHAR(500) NULL,
+	///		Data_Hora DATETIME NOT NULL
+	///	);
+	/// </summary>
+	class Transferencias {
+		public Transferencias () {
+			ID = -1;
+		}
+
+		public Transferencias (int idContaOrigem, int idContaDestino, decimal valor, DateTime dataHora, string comentario) {
+			ID_ContaOrigem = idContaDestino;
+			ID_ContaDestino = idContaDestino;
+			Valor = valor;
+			Data_Hora = dataHora;
+			Comentario = comentario;
+		}
+
+		[PrimaryKey, AutoIncrement]
+		public int ID { get; set; }
+
+		[NotNull]
+		public int ID_ContaOrigem { get; set; }
+
+		[NotNull]
+		public int ID_ContaDestino { get; set; }
+
+		[NotNull]
+		public decimal Valor { get; set; }
+
+		[NotNull]
+		public DateTime Data_Hora { get; set; }
+
+		public string Comentario { get; set; }
+	}
 
 	/// <summary>
 	/// A classe a seguir deve conter todos os métodos relacionados ao acesso a base de dados.
@@ -233,6 +275,7 @@ namespace Projeto_S2B_Main {
 			conn.CreateTable<Fornecedores>();
 			conn.CreateTable<Lancamentos>();
 			conn.CreateTable<Lancamento_Atributo>();
+			conn.CreateTable<Transferencias>();
 
 			//Registra a categoria padrão se ela ainda não existir
 			if (conn.Query<Categorias>("SELECT * FROM Categorias WHERE Nome = 'Indeterminado'").Count == 0) {

@@ -55,3 +55,15 @@ CREATE TABLE Lancamento_Atributo (
 	FOREIGN KEY (ID_Lancamento) REFERENCES Lancamentos(ID),
 	FOREIGN KEY (ID_Atributo) REFERENCES Atributos(ID)
 );
+
+/*Registro de transferências*/
+CREATE TABLE Transferencias (
+	ID int PRIMARY KEY AUTO_INCREMENT,
+	ID_ContaOrigem int NOT NULL,
+	ID_ContaDestino int NOT NULL,
+	Valor decimal(10,2) NOT NULL,
+	Comentario VARCHAR(500) NULL,
+	Data_Hora DATETIME NOT NULL,
+	FOREIGN KEY (ID_ContaOrigem) REFERENCES Contas(ID),
+	FOREIGN KEY (ID_ContaDestino) REFERENCES Fornecedores(ID)
+);
