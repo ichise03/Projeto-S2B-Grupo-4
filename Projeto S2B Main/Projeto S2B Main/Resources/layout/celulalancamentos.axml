@@ -7,7 +7,7 @@
     android:minHeight="25px">
     <TextView
         android:id="@+id/textContaRelacionada"
-        android:layout_height="55dp"
+        android:layout_height="45dp"
         android:layout_width="fill_parent"
         android:text=""
         android:textSize="24dp"
@@ -16,7 +16,7 @@
         android:gravity="center_vertical" />
     <TextView
         android:id="@+id/textData"
-        android:layout_height="55dp"
+        android:layout_height="45dp"
         android:layout_width="fill_parent"
         android:text=""
         android:textSize="24dp"
@@ -25,7 +25,7 @@
         android:gravity="center_vertical" />
     <TextView
         android:id="@+id/textValor"
-        android:layout_height="55dp"
+        android:layout_height="45dp"
         android:layout_width="fill_parent"
         android:text=""
         android:textSize="24dp"

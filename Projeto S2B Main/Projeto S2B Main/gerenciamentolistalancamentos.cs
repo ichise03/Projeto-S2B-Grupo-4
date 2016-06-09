@@ -53,7 +53,7 @@ namespace Projeto_S2B_Main
 
             view.FindViewById<TextView>(Resource.Id.textContaRelacionada).Text = GerenciadorBanco.acessarConta(DADOS[position].ID_Conta).Nome;
             view.FindViewById<TextView>(Resource.Id.textData).Text = DADOS[position].Data_Hora.ToString();
-            view.FindViewById<TextView>(Resource.Id.textValor).Text = DADOS[position].Valor.ToString();
+            view.FindViewById<TextView>(Resource.Id.textValor).Text = "Saldo:" +  DADOS[position].Valor.ToString();
 
             return view;
         }
