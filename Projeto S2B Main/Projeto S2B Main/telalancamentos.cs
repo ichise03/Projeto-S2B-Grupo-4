@@ -26,7 +26,7 @@ namespace Projeto_S2B_Main
 
             LoadList();
 
-            FindViewById<ListView>(Resource.Id.contasView).ItemClick += List_ItemClick;           
+            FindViewById<ListView>(Resource.Id.lancamentosView).ItemClick += List_ItemClick;           
 
             //Ativa o botão de voltar na action bar
             this.ActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -49,7 +49,7 @@ namespace Projeto_S2B_Main
         //Função que define o que acontece quando clica no item da listview
         void List_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
-            //Implementar
+            //Implementar. Utilizar gerenciamentolistalancamentos
         }
 
         //Função que faz o botão de voltar da action bar funcionar
