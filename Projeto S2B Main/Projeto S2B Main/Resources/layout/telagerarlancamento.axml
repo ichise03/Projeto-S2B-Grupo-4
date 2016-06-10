@@ -93,7 +93,7 @@
             android:inputType="date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText3" />
+            android:id="@+id/editText5" />
         <TextView
             android:text="Hora"
             android:textAppearance="?android:attr/textAppearanceLarge"

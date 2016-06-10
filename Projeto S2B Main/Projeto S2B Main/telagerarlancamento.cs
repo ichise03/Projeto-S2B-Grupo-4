@@ -16,7 +16,10 @@ namespace Projeto_S2B_Main
 
     class telagerarlancamento : Activity
     {
-        protected override void OnCreate(Bundle bundle)
+		private List<Contas> list;
+		private List<Categorias> list2;
+
+		protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
 
@@ -26,7 +29,7 @@ namespace Projeto_S2B_Main
             this.ActionBar.SetDisplayHomeAsUpEnabled(true);
 
 			List<string> nomes = new List<string>();
-			List<Contas> list = GerenciadorBanco.acessarContas();
+			list = GerenciadorBanco.acessarContas();
 
 			list.ForEach((Contas c) => {
 				nomes.Add(c.Nome);
@@ -36,7 +39,7 @@ namespace Projeto_S2B_Main
 			FindViewById<Spinner>(Resource.Id.spinner1).Adapter = ad;
 
 			List<string> nomes2 = new List<string>();
-			List<Categorias> list2 = GerenciadorBanco.acessarCategorias();
+			list2 = GerenciadorBanco.acessarCategorias();
 
 			list2.ForEach((Categorias c) => {
 				nomes2.Add(c.Nome);
@@ -49,7 +52,18 @@ namespace Projeto_S2B_Main
 		}
 
 		public void Lancar (object sender, EventArgs e) {
-			GerenciadorBanco.adicionarLancamento(2, 3, 5, 300, TipoLancamento.Debitar, new DateTime(2016, 03, 15), "Parabéns a todos. Hoje foi produtivo!");
+			TipoLancamento tipo;
+
+			if (FindViewById<RadioButton>(Resource.Id.radioButton1).Checked) {
+				tipo = TipoLancamento.Creditar;
+			} else {
+				tipo = TipoLancamento.Debitar;
+			}
+
+			int contaID = list[FindViewById<Spinner>(Resource.Id.spinner1).SelectedItemPosition].ID;
+			int categoriaID = list2[FindViewById<Spinner>(Resource.Id.spinner3).SelectedItemPosition].ID;
+
+			GerenciadorBanco.adicionarLancamento(contaID, 1, categoriaID, decimal.Parse(FindViewById<EditText>(Resource.Id.editText1).Text.Replace(",", ".")), tipo, Convert.ToDateTime(FindViewById<EditText>(Resource.Id.editText5).Text + " " + FindViewById<EditText>(Resource.Id.editText4).Text), FindViewById<EditText>(Resource.Id.editText2).Text);
 		}
 
         //Função que faz o botão de voltar da action bar funcionar

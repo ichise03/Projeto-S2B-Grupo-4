@@ -129,11 +129,11 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f05001e
 			public const int criarConta = 2131034142;
 			
-			// aapt resource value: 0x7f050043
-			public const int criarLancamento = 2131034179;
+			// aapt resource value: 0x7f050044
+			public const int criarLancamento = 2131034180;
 			
-			// aapt resource value: 0x7f050045
-			public const int criarTransferencia = 2131034181;
+			// aapt resource value: 0x7f050046
+			public const int criarTransferencia = 2131034182;
 			
 			// aapt resource value: 0x7f05002b
 			public const int editText1 = 2131034155;
@@ -144,8 +144,11 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f05003a
 			public const int editText3 = 2131034170;
 			
-			// aapt resource value: 0x7f050041
-			public const int editText4 = 2131034177;
+			// aapt resource value: 0x7f050042
+			public const int editText4 = 2131034178;
+			
+			// aapt resource value: 0x7f050040
+			public const int editText5 = 2131034176;
 			
 			// aapt resource value: 0x7f050022
 			public const int excluirAtributo = 2131034146;
@@ -159,8 +162,8 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f050018
 			public const int lancamentos = 2131034136;
 			
-			// aapt resource value: 0x7f050042
-			public const int lancamentosView = 2131034178;
+			// aapt resource value: 0x7f050043
+			public const int lancamentosView = 2131034179;
 			
 			// aapt resource value: 0x7f050008
 			public const int linearLayout1 = 2131034120;
@@ -240,11 +243,11 @@ namespace Projeto_S2B_Main
 			// aapt resource value: 0x7f05003f
 			public const int textView7 = 2131034175;
 			
-			// aapt resource value: 0x7f050040
-			public const int textView8 = 2131034176;
+			// aapt resource value: 0x7f050041
+			public const int textView8 = 2131034177;
 			
-			// aapt resource value: 0x7f050044
-			public const int tranferenciasView = 2131034180;
+			// aapt resource value: 0x7f050045
+			public const int tranferenciasView = 2131034181;
 			
 			// aapt resource value: 0x7f050019
 			public const int transferencia = 2131034137;
