@@ -34,13 +34,7 @@ namespace Projeto_S2B_Main {
 			//Aqui serão adicionados os dados do DB
 			DADOS = GerenciadorBanco.acessarContas();
 
-			//Criando a listview e passando os parâmetros
-			List<string> nomes = new List<string>();
-			DADOS.ForEach((Contas i) => {
-				nomes.Add(i.Nome);
-			});
-
-			GerenciamentoLista GL = new GerenciamentoLista(nomes, this);
+			GerenciamentoContas GL = new GerenciamentoContas(DADOS, this);
 
 			FindViewById<ListView>(Resource.Id.contasView).Adapter = GL;
 		}
@@ -57,7 +51,7 @@ namespace Projeto_S2B_Main {
 			intent.PutExtra("isUpdate", true);
 			intent.PutExtra("contaID", DADOS[e.Position].ID);
 			intent.PutExtra("contaNome", DADOS[e.Position].Nome);
-			intent.PutExtra("contaSaldo", DADOS[e.Position].Saldo.ToString());
+			intent.PutExtra("contaSaldo", GerenciadorBanco.Moeda(DADOS[e.Position].Saldo));
 			intent.PutExtra("contaTipo", DADOS[e.Position].Tipo.ToString());
 
 			StartActivity(intent);

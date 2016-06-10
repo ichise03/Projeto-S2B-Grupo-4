@@ -43,18 +43,22 @@ namespace Projeto_S2B_Main {
 						break;
 				}
 
-				FindViewById<TextView>(Resource.Id.saldoLabel).Text = "Saldo Atual";
+				FindViewById<TextView>(Resource.Id.saldoLabel).Text = "Saldo Atual (R$)";
 				FindViewById<Button>(Resource.Id.contaButton).Text = "ATUALIZAR CONTA";
 
 				FindViewById<Button>(Resource.Id.excluirConta).Enabled = true;
 				FindViewById<Button>(Resource.Id.excluirConta).Visibility = ViewStates.Visible;
+
+				this.ActionBar.Title = "Editar Conta";
 			} else {
 				//Entrar no modo de criação da conta
-				FindViewById<TextView>(Resource.Id.saldoLabel).Text = "Saldo Inicial";
+				FindViewById<TextView>(Resource.Id.saldoLabel).Text = "Saldo Inicial (R$)";
 				FindViewById<Button>(Resource.Id.contaButton).Text = "CRIAR NOVA CONTA";
 
 				FindViewById<Button>(Resource.Id.excluirConta).Enabled = false;
 				FindViewById<Button>(Resource.Id.excluirConta).Visibility = ViewStates.Invisible;
+
+				this.ActionBar.Title = "Nova Conta";
 			}
 
 			//Ativa o botão de voltar na action bar
@@ -79,7 +83,7 @@ namespace Projeto_S2B_Main {
 			}
 
 			decimal saldo;
-			if (!decimal.TryParse(FindViewById<EditText>(Resource.Id.editText2).Text, out saldo))
+			if (!decimal.TryParse(FindViewById<EditText>(Resource.Id.editText2).Text.Replace(".", ","), out saldo))
 				saldo = 0;
 
 			try {

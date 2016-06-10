@@ -59,11 +59,10 @@
         android:id="@+id/saldoLabel"
         android:layout_marginTop="17dp" />
     <EditText
-        android:inputType="numberDecimal"
+        android:inputType="numberDecimal|numberSigned"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText2"
-        android:numeric="decimal" />
+        android:id="@+id/editText2" />
     <Button
         android:text="EXCLUIR CONTA"
         android:layout_width="match_parent"

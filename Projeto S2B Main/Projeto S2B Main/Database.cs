@@ -54,7 +54,8 @@ namespace Projeto_S2B_Main {
 			ID = -1;
 		}
 
-		public Categorias (string nome, string grupo) {
+		public Categorias (string nome, string grupo, int id = -1) {
+			ID = id;
 			Nome = nome;
 			Grupo = grupo;
 		}
@@ -82,7 +83,8 @@ namespace Projeto_S2B_Main {
 			ID = -1;
 		}
 
-		public Atributos (int idCategoria, string nome, TipoAtributo tipo) {
+		public Atributos (int idCategoria, string nome, TipoAtributo tipo, int id = -1) {
+			ID = id;
 			ID_Categoria = idCategoria;
 			Nome = nome;
 			Tipo = tipo;
@@ -112,7 +114,8 @@ namespace Projeto_S2B_Main {
 			ID = -1;
 		}
 
-		public Fornecedores (string nome) {
+		public Fornecedores (string nome, int id = -1) {
+			ID = id;
 			Nome = nome;
 		}
 
@@ -140,8 +143,9 @@ namespace Projeto_S2B_Main {
 			ID = -1;
 		}
 
-        public Lancamentos (int idConta, int idFornecedor, int idCategoria, decimal valor, TipoLancamento tipo, DateTime dataHora, string comentario) {
-            ID_Conta = idConta;
+        public Lancamentos (int idConta, int idFornecedor, int idCategoria, decimal valor, TipoLancamento tipo, DateTime dataHora, string comentario, int id = -1) {
+			ID = id;
+			ID_Conta = idConta;
             ID_Fornecedor = idFornecedor;
             ID_Categoria = idCategoria;
             Valor = valor;
@@ -187,7 +191,8 @@ namespace Projeto_S2B_Main {
 			ID = -1;
 		}
 
-		public Lancamento_Atributo (int idLancamento, int idAtributo, string valor) {
+		public Lancamento_Atributo (int idLancamento, int idAtributo, string valor, int id = -1) {
+			ID = id;
 			ID_Lancamento = idLancamento;
 			ID_Atributo = idAtributo;
 			Valor = valor;
@@ -221,7 +226,8 @@ namespace Projeto_S2B_Main {
 			ID = -1;
 		}
 
-		public Transferencias (int idContaOrigem, int idContaDestino, decimal valor, DateTime dataHora, string comentario) {
+		public Transferencias (int idContaOrigem, int idContaDestino, decimal valor, DateTime dataHora, string comentario, int id = -1) {
+			ID = id;
 			ID_ContaOrigem = idContaDestino;
 			ID_ContaDestino = idContaDestino;
 			Valor = valor;
@@ -373,8 +379,8 @@ namespace Projeto_S2B_Main {
 
 		}
 
-		public static System.Collections.Generic.List<Categorias> acessarCategorias () {
-			return conn.Query<Categorias>(string.Format("Select * from Categorias"));
+		public static System.Collections.Generic.List<Categorias> acessarCategorias (string where = "") {
+			return conn.Query<Categorias>(string.Format("Select * from Categorias {0}", where));
 		}
 
 		public static void updateCategoria (Categorias categoria) {
@@ -396,7 +402,7 @@ namespace Projeto_S2B_Main {
         }
 
         public static Atributos acessarAtributo (int id) {
-            System.Collections.Generic.List<Atributos> atributo = conn.Query<Atributos>(string.Format("Select * from Atributo where ID = {0};", id));
+            System.Collections.Generic.List<Atributos> atributo = conn.Query<Atributos>(string.Format("Select * from Atributos where ID = {0};", id));
             if (atributo.Count > 0)
                 return atributo[0];
             else
@@ -404,10 +410,14 @@ namespace Projeto_S2B_Main {
         }
 
         public static System.Collections.Generic.List<Atributos> acessarAtributo () {
-            return conn.Query<Atributos>(string.Format("Select * from Atributo"));
+            return conn.Query<Atributos>(string.Format("Select * from Atributos"));
         }
 
-        public static void updateAtributo (Atributos atributo) {
+		public static List<Atributos> acessarAtributosPorCategoria (int categoria_ID) {
+			return conn.Query<Atributos>(string.Format("Select * from Atributos WHERE ID_Categoria = {0}", categoria_ID));
+		}
+
+		public static void updateAtributo (Atributos atributo) {
             conn.Update(atributo);
         }
 
@@ -419,8 +429,12 @@ namespace Projeto_S2B_Main {
             conn.Delete<Atributos>(atributo_ID);
         }
 
-        //Lançamento
-        public static int adicionarLancamento (int idConta, int idFornecedor, int idCategoria, decimal valor, TipoLancamento Tipo, DateTime dataHora, string comentario){
+		public static void deleteAtributosPelaCategoria (int categoriaID) {
+			conn.Query<Atributos>("DELETE FROM Atributos WHERE ID_Categoria = ?", categoriaID);
+		}
+
+		//Lançamento
+		public static int adicionarLancamento (int idConta, int idFornecedor, int idCategoria, decimal valor, TipoLancamento Tipo, DateTime dataHora, string comentario){
             Lancamentos lancamento = new Lancamentos(idConta, idFornecedor, idCategoria, valor, Tipo, dataHora, comentario);
 			Contas conta = acessarConta(idConta);
 
@@ -588,5 +602,25 @@ namespace Projeto_S2B_Main {
 			return grupos.ToArray();
 		}
 
+		public static List<Categorias> SelectGruposWithTable () {
+			List<Categorias> distinct = conn.Query<Categorias>("SELECT DISTINCT Grupo FROM Categorias");
+
+			return distinct;
+		}
+
+		public static string Moeda (decimal valor) {
+			decimal round = Math.Round(valor * 100) / 100;
+			string result = round.ToString().Replace('.', ',');
+
+			if (result.Contains(",")) {
+				if (result.Substring(result.LastIndexOf(',') + 1).Length == 1) {
+					result += "0";
+				}
+			} else {
+				result += ",00";
+			}
+
+			return result;
+		}
 	}
 }

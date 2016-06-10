@@ -42,7 +42,6 @@ namespace Projeto_S2B_Main
             DADOS = GerenciadorBanco.acessarLancamento();
 
             gerenciamentolistalancamentos GL = new gerenciamentolistalancamentos(DADOS, this);
-            Console.WriteLine("C:" + GL.Count);
             FindViewById<ListView>(Resource.Id.lancamentosView).Adapter = GL;
         }
         //Função para startar a nova tela

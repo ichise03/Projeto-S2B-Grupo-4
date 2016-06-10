@@ -14,7 +14,8 @@
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/autoCompleteTextView1" />
+        android:id="@+id/autoCompleteGrupo"
+        android:inputType="text" />
     <TextView
         android:text="Nome da Categoria"
         android:textAppearance="?android:attr/textAppearanceLarge"
@@ -24,11 +25,35 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editText1" />
-    <Button
-        android:text="CRIAR NOVA CATEGORIA"
+        android:id="@+id/categoriaNome"
+        android:inputType="text" />
+    <TextView
+        android:text="Atributos:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button1"
-        android:layout_marginTop="336dp" />
+        android:id="@+id/adicionarAttr" />
+    <ListView
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="226.0dp"
+        android:id="@+id/atributosView" />
+    <Button
+        android:text="EXCLUIR CATEGORIA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/excluirCategoria"
+        android:visibility="invisible"
+        android:enabled="false" />
+    <Button
+        android:text="ADICIONAR ATRIBUTO"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/criarAtributo" />
+    <Button
+        android:text="CRIAR CATEGORIA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/novaCategoria" />
 </LinearLayout>

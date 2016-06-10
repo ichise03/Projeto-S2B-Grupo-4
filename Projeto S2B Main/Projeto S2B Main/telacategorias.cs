@@ -10,77 +10,111 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace Projeto_S2B_Main
-{
-    [Activity(Label = "Categorias")]
+namespace Projeto_S2B_Main {
+	[Activity(Label = "Categorias")]
 
-    class telacategorias : Activity
-    {
-        List<Categorias> DADOS = new List<Categorias>();
+	class telacategorias : Activity {
+		private string grupo = "";
+		private List<Categorias> DADOS = new List<Categorias>();
 
-        protected override void OnCreate(Bundle bundle)
-        {
-            base.OnCreate(bundle);
+		protected override void OnCreate (Bundle bundle) {
+			base.OnCreate(bundle);
 
-            SetContentView(Resource.Layout.telacategorias);
+			SetContentView(Resource.Layout.telacategorias);
+			
+			LoadList();
 
-            LoadList();
+			//Ativa o botão de voltar na action bar
+			this.ActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            FindViewById<ListView>(Resource.Id.categoriasView).ItemClick += List_ItemClick;
+			FindViewById<Button>(Resource.Id.criarCategoria).Click += NovaCategoria;
+			FindViewById<ListView>(Resource.Id.categoriasView).ItemClick += List_ItemClick;
+		}
 
-            //Ativa o botão de voltar na action bar
-            this.ActionBar.SetDisplayHomeAsUpEnabled(true);
+		public void LoadList () {
+			//Criando a listview e passando os parâmetros
+			List<string> nomes = new List<string>();
+			
+			//Aqui serão adicionados os dados do DB
+			if (grupo == "") {
+				DADOS = GerenciadorBanco.SelectGruposWithTable();
+				this.ActionBar.Title = "Categorias";
 
-            FindViewById(Resource.Id.criarCategoria).Click += NovaCategoria;
-        }
+				DADOS.ForEach((Categorias i) => {
+					nomes.Add(i.Grupo);
+				});
+			} else {
+				DADOS = GerenciadorBanco.acessarCategorias("WHERE Grupo = \"" + grupo + "\"");
 
-        public void LoadList()
-        {
-            //Aqui serão adicionados os dados do DB
-            DADOS = GerenciadorBanco.acessarCategorias();
+				if (DADOS.Count == 0) {
+					grupo = "";
+					LoadList();
+					return;
+				} else {
+					this.ActionBar.Title = grupo + "/";
+				}
 
-            //Criando a listview e passando os parâmetros
-            List<string> nomes = new List<string>();
-            DADOS.ForEach((Categorias i) => {
-                nomes.Add(i.Nome);
-            });
+				DADOS.ForEach((Categorias i) => {
+					nomes.Add(i.Nome);
+				});
+			}
 
-            GerenciamentoLista GL = new GerenciamentoLista(nomes, this);
+			GerenciamentoLista GL = new GerenciamentoLista(nomes, this);
 
-            FindViewById<ListView>(Resource.Id.categoriasView).Adapter = GL;
-        }
+			FindViewById<ListView>(Resource.Id.categoriasView).Adapter = GL;
+		}
 
-        //Função para chamar a nova tela de criar categoria
-        void NovaCategoria(object sender, EventArgs e)
-        {
-            StartActivity(typeof(telacriarcategoria));
-        }
+		//Função para iniciar a activity de nova categoria
+		void NovaCategoria (object sender, EventArgs e) {
+			StartActivity(typeof(telacriarcategoria));
+		}
 
-        //Função que define o que acontece quando clica no item da listview
-        void List_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
-        {
-            Intent intent = new Intent(this, typeof(telacriarcategoria));
+		//Função que define o que acontece quando clica no item da listview
+		void List_ItemClick (object sender, AdapterView.ItemClickEventArgs e) {
+			//Acessar grupo
+			if (grupo == "") {
+				grupo = DADOS[e.Position].Grupo;
 
-            intent.PutExtra("isUpdate", true);
-            intent.PutExtra("categoriaID", DADOS[e.Position].ID);
-            intent.PutExtra("categoriaNome", DADOS[e.Position].Nome);
-            intent.PutExtra("categoriaGrupo", DADOS[e.Position].Grupo);            
+				LoadList();
+			} else {
+				//Editar categoria
+				Intent intent = new Intent(this, typeof(telacriarcategoria));
 
-            StartActivity(intent);
-        }
+				intent.PutExtra("isUpdate", true);
+				intent.PutExtra("categoriaID", DADOS[e.Position].ID);
+				intent.PutExtra("categoriaNome", DADOS[e.Position].Nome);
+				intent.PutExtra("categoriaGrupo", DADOS[e.Position].Grupo);
 
-        //Função que faz o botão de voltar da action bar funcionar
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Android.Resource.Id.Home:
-                    Finish();
-                    return true;
-                default:
-                    return base.OnOptionsItemSelected(item);
-            }
+				StartActivity(intent);
+			}
+		}
 
-        }
-    }
+		//Função chamada ao voltar da tela de criação de contas
+		protected override void OnRestart () {
+			base.OnRestart();
+
+			//Recarregar lista
+			LoadList();
+		}
+
+		//Função que faz o botão de voltar da action bar funcionar
+		public override bool OnOptionsItemSelected (IMenuItem item) {
+			switch (item.ItemId) {
+				case Android.Resource.Id.Home:
+					//Voltar para a Main
+					if (grupo == "") {
+						Finish();
+					} else {
+						//Voltar para a escolha de grupos
+						grupo = "";
+						LoadList();
+					}
+
+					return true;
+				default:
+					return base.OnOptionsItemSelected(item);
+			}
+
+		}
+	}
 }
