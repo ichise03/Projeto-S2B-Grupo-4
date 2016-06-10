@@ -37,7 +37,7 @@
         android:minWidth="25px"
         android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="226.0dp"
+        android:layout_height="215.0dp"
         android:id="@+id/atributosView" />
     <Button
         android:text="EXCLUIR CATEGORIA"

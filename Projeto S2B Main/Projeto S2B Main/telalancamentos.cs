@@ -23,7 +23,7 @@ namespace Projeto_S2B_Main
 
             SetContentView(Resource.Layout.telalancamentos);
 
-            GerenciadorBanco.adicionarLancamento(2, 3, 5, 300, TipoLancamento.Debitar, new DateTime(2016, 03, 15), "Parabéns a todos. Hoje foi produtivo!");
+            //GerenciadorBanco.adicionarLancamento(3, 3, 5, 300, TipoLancamento.Debitar, new DateTime(2016, 03, 15), "Parabéns a todos. Hoje foi produtivo!");
 
             //Aqui serão adicionados os dados do DB
             LoadList();
@@ -38,7 +38,6 @@ namespace Projeto_S2B_Main
 
         public void LoadList () {
             //Aqui serão adicionados os dados do DB
-
             DADOS = GerenciadorBanco.acessarLancamento();
 
             gerenciamentolistalancamentos GL = new gerenciamentolistalancamentos(DADOS, this);

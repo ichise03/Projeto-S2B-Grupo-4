@@ -108,7 +108,12 @@ namespace Projeto_S2B_Main {
 		protected override void OnActivityResult (int requestCode, [GeneratedEnum] Result resultCode, Intent data) {
 			base.OnActivityResult(requestCode, resultCode, data);
 
-			bool isUpdate = data.GetBooleanExtra("isUpdate", false);
+			bool isUpdate;
+			try {
+				isUpdate = data.GetBooleanExtra("isUpdate", false);
+			} catch {
+				isUpdate = false;
+			}
 
 			if (resultCode == Result.Ok) {
 				List<string> nomes = new List<string>();

@@ -33,7 +33,7 @@ namespace Projeto_S2B_Main {
 		public void LoadList () {
 			//Aqui serão adicionados os dados do DB
 			DADOS = GerenciadorBanco.acessarContas();
-
+			Console.WriteLine(DADOS[0].ID);
 			GerenciamentoContas GL = new GerenciamentoContas(DADOS, this);
 
 			FindViewById<ListView>(Resource.Id.contasView).Adapter = GL;

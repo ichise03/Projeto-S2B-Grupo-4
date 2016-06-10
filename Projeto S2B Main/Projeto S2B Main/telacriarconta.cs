@@ -83,7 +83,7 @@ namespace Projeto_S2B_Main {
 			}
 
 			decimal saldo;
-			if (!decimal.TryParse(FindViewById<EditText>(Resource.Id.editText2).Text.Replace(".", ","), out saldo))
+			if (!decimal.TryParse(FindViewById<EditText>(Resource.Id.editText2).Text.Replace(",", "."), out saldo))
 				saldo = 0;
 
 			try {

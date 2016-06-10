@@ -25,10 +25,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView2" />
-        <Spinner
+        <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/spinner2" />
+            android:id="@+id/AutoFornecedor" />
         <TextView
             android:text="Selecione a categoria"
             android:textAppearance="?android:attr/textAppearanceLarge"
